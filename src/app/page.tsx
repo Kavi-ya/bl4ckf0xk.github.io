@@ -95,9 +95,9 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 Specializing in <span className="text-red-400 font-bold">Exploit Development</span>, 
-                <span className="text-gray-950 font-bold"> ICS/OT Security</span>,
-                <span className="text-gray-950 font-bold"> Satellite Security</span>, and 
-                <span className="text-gray-950 font-bold"> AD Security</span> 
+                <span className="text-red-400 font-bold"> ICS/OT Security</span>,
+                <span className="text-red-400 font-bold"> Satellite Security</span>, and 
+                <span className="text-red-400 font-bold"> AD Security</span> 
               </motion.p>
             </div>
 
