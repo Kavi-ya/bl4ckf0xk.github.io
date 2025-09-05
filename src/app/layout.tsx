@@ -23,8 +23,8 @@ export default function RootLayout({
   return (
     <html lang="en" className="dark">
       <head>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" strategy="afterInteractive" />
-        <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" strategy="afterInteractive" />
+        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" strategy="beforeInteractive" />
+        <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" strategy="beforeInteractive" />
       </head>
       <body className="min-h-screen bg-black text-ash-100 antialiased">
         <div className="blur-bg cyber-grid min-h-screen">
