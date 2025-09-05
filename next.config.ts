@@ -1,9 +1,10 @@
-import type { NextConfig } from "next";
-
-const nextConfig: NextConfig = {
+/** @type {import('next').NextConfig} */
+const nextConfig = {
   output: 'export',
-  images: { unoptimized: true }, // Disable image optimization for static export
-  basePath: '',
+  images: { unoptimized: true },
+  basePath: '', // Empty for root-level GitHub Pages
+  assetPrefix: '', // Ensure assets use relative paths
+  trailingSlash: true, // Optional: Adds trailing slashes to help with routing
 };
 
-export default nextConfig;
+module.exports = nextConfig;
