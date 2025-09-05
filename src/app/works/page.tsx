@@ -92,44 +92,133 @@ export default function Works() {
   ];
 
   const categories = [
-    { id: 'all', name: 'All Projects', color: 'from-gray-500 to-gray-600' },
-    { id: 'exploit', name: 'Exploit Development', color: 'from-red-500 to-red-600' },
-    { id: 'ot-ics', name: 'OT/ICS Security', color: 'from-purple-500 to-purple-600' },
-    { id: 'ad', name: 'Active Directory', color: 'from-orange-500 to-orange-600' },
-    { id: 'malware', name: 'Malware Analysis', color: 'from-blue-500 to-blue-600' },
-    { id: 'network', name: 'Network Security', color: 'from-green-500 to-green-600' },
-    { id: 'research', name: 'Vulnerability Research', color: 'from-pink-500 to-pink-600' }
+    { id: 'all', name: 'All Projects', color: 'linear-gradient(to right, #6B7280, #4B5563)' },
+    { id: 'exploit', name: 'Exploit Development', color: 'linear-gradient(to right, #EF4444, #DC2626)' },
+    { id: 'ot-ics', name: 'OT/ICS Security', color: 'linear-gradient(to right, #8B5CF6, #7C3AED)' },
+    { id: 'ad', name: 'Active Directory', color: 'linear-gradient(to right, #F97316, #EA580C)' },
+    { id: 'malware', name: 'Malware Analysis', color: 'linear-gradient(to right, #3B82F6, #2563EB)' },
+    { id: 'network', name: 'Network Security', color: 'linear-gradient(to right, #10B981, #059669)' },
+    { id: 'research', name: 'Vulnerability Research', color: 'linear-gradient(to right, #EC4899, #DB2777)' }
   ];
 
   const getCategoryColor = (category: string) => {
     const cat = categories.find(c => c.name === category);
-    return cat?.color || 'from-gray-500 to-gray-600';
+    return cat?.color || 'linear-gradient(to right, #6B7280, #4B5563)';
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
       case 'Active':
-        return 'text-green-400 bg-green-400/10 border-green-400/20';
+        return {
+          color: '#34D399',
+          backgroundColor: 'rgba(52, 211, 153, 0.1)',
+          border: '1px solid rgba(52, 211, 153, 0.2)'
+        };
       case 'Completed':
-        return 'text-blue-400 bg-blue-400/10 border-blue-400/20';
+        return {
+          color: '#60A5FA',
+          backgroundColor: 'rgba(96, 165, 250, 0.1)',
+          border: '1px solid rgba(96, 165, 250, 0.2)'
+        };
       case 'In Development':
-        return 'text-yellow-400 bg-yellow-400/10 border-yellow-400/20';
+        return {
+          color: '#FBBF24',
+          backgroundColor: 'rgba(251, 191, 36, 0.1)',
+          border: '1px solid rgba(251, 191, 36, 0.2)'
+        };
       default:
-        return 'text-gray-400 bg-gray-400/10 border-gray-400/20';
+        return {
+          color: '#9CA3AF',
+          backgroundColor: 'rgba(156, 163, 175, 0.1)',
+          border: '1px solid rgba(156, 163, 175, 0.2)'
+        };
     }
   };
 
   return (
-    <div className="min-h-screen pt-16 overflow-hidden">
+    <div style={{
+      minHeight: '100vh',
+      paddingTop: '4rem',
+      overflow: 'hidden'
+    }}>
+      <style jsx>{`
+        .background-blur {
+          background: linear-gradient(to bottom right, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.8));
+          backdrop-filter: blur(16px);
+        }
+        .project-card:hover {
+          border-color: rgba(239, 68, 68, 0.5);
+          transform: scale(1.05);
+          transition: all 0.5s ease;
+        }
+        .button-gradient {
+          background: linear-gradient(to right, #EF4444, #A855F7);
+          position: relative;
+          overflow: hidden;
+        }
+        .button-gradient:hover .button-overlay {
+          opacity: 1;
+        }
+        .button-overlay {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(to right, #F87171, #C084FC);
+          opacity: 0;
+          transition: opacity 0.3s ease;
+        }
+        .github-button:hover {
+          border-color: #EF4444;
+          color: #EF4444;
+        }
+        .category-badge {
+          padding: 0.25rem 0.75rem;
+          border-radius: 9999px;
+          font-size: 0.875rem;
+          font-weight: 700;
+        }
+        .tech-badge {
+          padding: 0.25rem 0.75rem;
+          background-color: rgba(31, 41, 55, 0.5);
+          color: #9CA3AF;
+          border: 1px solid #4B5563;
+          border-radius: 9999px;
+          font-size: 0.875rem;
+        }
+        .status-badge {
+          padding: 0.25rem 0.75rem;
+          border-radius: 9999px;
+          font-size: 0.75rem;
+          font-weight: 700;
+        }
+        .view-details:hover .arrow {
+          transform: translateX(4px);
+        }
+      `}</style>
+
       {/* Hero Section */}
-      <section className="relative py-32 px-4 sm:px-6 lg:px-8">
-        {/* Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
+      <section style={{
+        position: 'relative',
+        padding: '8rem 1rem'
+      }}>
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          overflow: 'hidden'
+        }}>
           <motion.div
-            className="absolute top-1/4 left-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl"
+            style={{
+              position: 'absolute',
+              top: '25%',
+              left: '25%',
+              width: '24rem',
+              height: '24rem',
+              backgroundColor: 'rgba(239, 68, 68, 0.05)',
+              borderRadius: '50%',
+              filter: 'blur(96px)'
+            }}
             animate={{
               scale: [1, 1.2, 1],
-              opacity: [0.3, 0.6, 0.3],
+              opacity: [0.3, 0.6, 0.3]
             }}
             transition={{
               duration: 8,
@@ -138,10 +227,19 @@ export default function Works() {
             }}
           />
           <motion.div
-            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-purple-500/5 rounded-full blur-3xl"
+            style={{
+              position: 'absolute',
+              bottom: '25%',
+              right: '25%',
+              width: '20rem',
+              height: '20rem',
+              backgroundColor: 'rgba(168, 85, 247, 0.05)',
+              borderRadius: '50%',
+              filter: 'blur(96px)'
+            }}
             animate={{
               scale: [1.2, 1, 1.2],
-              opacity: [0.4, 0.7, 0.4],
+              opacity: [0.4, 0.7, 0.4]
             }}
             transition={{
               duration: 10,
@@ -152,20 +250,47 @@ export default function Works() {
           />
         </div>
 
-        <div className="max-w-7xl mx-auto relative z-10">
+        <div style={{
+          maxWidth: '80rem',
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 10
+        }}>
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="text-center mb-20"
+            style={{
+              textAlign: 'center',
+              marginBottom: '5rem'
+            }}
           >
-            <span className="text-sm font-mono text-red-400 tracking-widest uppercase mb-4 block">
+            <span style={{
+              display: 'block',
+              fontFamily: 'monospace',
+              fontSize: '0.875rem',
+              color: '#EF4444',
+              letterSpacing: '0.2em',
+              textTransform: 'uppercase',
+              marginBottom: '1rem'
+            }}>
               Portfolio
             </span>
-            <h1 className="text-6xl sm:text-8xl font-black text-white mb-8">
+            <h1 style={{
+              fontSize: '3.75rem',
+              fontWeight: 900,
+              color: '#FFFFFF',
+              marginBottom: '2rem'
+            }}>
               My Works
             </h1>
-            <p className="text-xl text-gray-300 max-w-4xl mx-auto leading-relaxed">
+            <p style={{
+              fontSize: '1.25rem',
+              color: '#D1D5DB',
+              maxWidth: '64rem',
+              margin: '0 auto',
+              lineHeight: 1.75
+            }}>
               Security tools, frameworks, and research projects that demonstrate my expertise in cybersecurity
             </p>
           </motion.div>
@@ -173,23 +298,55 @@ export default function Works() {
       </section>
 
       {/* Projects Grid */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
+      <section style={{
+        padding: '5rem 1rem'
+      }}>
+        <div style={{
+          maxWidth: '80rem',
+          margin: '0 auto'
+        }}>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="mb-16"
+            style={{ marginBottom: '4rem' }}
           >
-            <div className="flex items-center space-x-4 mb-6">
-              <Code className="w-8 h-8 text-blue-400" />
-              <h2 className="text-5xl sm:text-6xl font-black text-white">Featured Projects</h2>
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '1rem',
+              marginBottom: '1.5rem'
+            }}>
+              <Code style={{ width: '2rem', height: '2rem', color: '#60A5FA' }} />
+              <h2
+                style={{
+                  fontSize: '3rem',
+                  fontWeight: 900,
+                  color: '#FFFFFF'
+                }}
+                className="sm:text-5xl"
+              >
+                Featured Projects
+              </h2>
             </div>
-            <p className="text-xl text-gray-300 max-w-3xl">Handpicked projects showcasing advanced security research and tool development</p>
+            <p style={{
+              fontSize: '1.25rem',
+              color: '#D1D5DB',
+              maxWidth: '48rem'
+            }}>
+              Handpicked projects showcasing advanced security research and tool development
+            </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+          <div
+            className="grid gap-8 lg:grid-cols-2"
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr',
+              gap: '2rem'
+            }}
+          >
             {projects.map((project, index) => (
               <motion.article
                 key={project.id}
@@ -197,74 +354,173 @@ export default function Works() {
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="group relative bg-gradient-to-br from-gray-900/80 to-gray-800/80 backdrop-blur-xl border border-gray-700 rounded-3xl p-8 hover:border-red-500/50 transition-all duration-500 hover:transform hover:scale-105 overflow-hidden"
+                className="project-card"
+                style={{
+                  position: 'relative',
+                  background: 'linear-gradient(to bottom right, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.8))',
+                  backdropFilter: 'blur(16px)',
+                  border: '1px solid #374151',
+                  borderRadius: '1.5rem',
+                  padding: '2rem',
+                  overflow: 'hidden'
+                }}
               >
-                {/* Background Pattern */}
-                <div className="absolute inset-0 opacity-5">
-                  <div className={`absolute top-0 left-0 w-full h-full bg-gradient-to-r ${getCategoryColor(project.category)} rounded-3xl`} />
+                <div style={{
+                  position: 'absolute',
+                  inset: 0,
+                  opacity: 0.05
+                }}>
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: getCategoryColor(project.category),
+                    borderRadius: '1.5rem'
+                  }} />
                 </div>
                 
-                <div className="relative z-10">
-                  <div className="flex items-start justify-between mb-6">
-                    <div className="flex items-center space-x-3">
+                <div style={{ position: 'relative', zIndex: 10 }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    justifyContent: 'space-between',
+                    marginBottom: '1.5rem'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem'
+                    }}>
                       {project.featured && (
-                        <span className="px-3 py-1 bg-gradient-to-r from-yellow-500 to-orange-500 text-black text-sm font-bold rounded-full flex items-center">
-                          <Star className="w-3 h-3 mr-1" />
+                        <span style={{
+                          padding: '0.25rem 0.75rem',
+                          background: 'linear-gradient(to right, #FBBF24, #F97316)',
+                          color: '#000000',
+                          fontSize: '0.875rem',
+                          fontWeight: 700,
+                          borderRadius: '9999px',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}>
+                          <Star style={{ width: '0.75rem', height: '0.75rem', marginRight: '0.25rem' }} />
                           Featured
                         </span>
                       )}
-                      <span className={`px-3 py-1 bg-gradient-to-r ${getCategoryColor(project.category)} text-white text-sm font-bold rounded-full`}>
+                      <span className="category-badge" style={{
+                        background: getCategoryColor(project.category),
+                        color: '#FFFFFF'
+                      }}>
                         {project.category}
                       </span>
                     </div>
-                    <span className={`px-3 py-1 text-xs font-bold rounded-full border ${getStatusColor(project.status)}`}>
+                    <span className="status-badge" style={getStatusColor(project.status) as React.CSSProperties}>
                       {project.status}
                     </span>
                   </div>
-                  
-                  <h3 className="text-3xl font-black text-white mb-4 group-hover:text-red-400 transition-colors leading-tight">
+                  <h3 style={{
+                    fontSize: '1.875rem',
+                    fontWeight: 900,
+                    color: '#FFFFFF',
+                    marginBottom: '1rem',
+                    transition: 'color 0.3s ease'
+                  }} className="group-hover:text-[#EF4444]">
                     {project.title}
                   </h3>
                   
-                  <p className="text-gray-300 mb-6 text-lg leading-relaxed">
+                  <p style={{
+                    color: '#D1D5DB',
+                    marginBottom: '1.5rem',
+                    fontSize: '1.125rem',
+                    lineHeight: 1.75
+                  }}>
                     {project.description}
                   </p>
                   
-                  <div className="flex flex-wrap gap-2 mb-6">
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem',
+                    marginBottom: '1.5rem'
+                  }}>
                     {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="px-3 py-1 bg-gray-800/50 text-gray-400 text-sm rounded-full border border-gray-600"
-                      >
+                      <span key={tech} className="tech-badge">
                         {tech}
                       </span>
                     ))}
                   </div>
                   
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-4 text-gray-400">
-                      <div className="flex items-center space-x-2">
-                        <Calendar className="w-4 h-4" />
-                        <span className="text-sm font-semibold">{new Date(project.date).toLocaleDateString()}</span>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '1rem',
+                      color: '#9CA3AF'
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}>
+                        <Calendar style={{ width: '1rem', height: '1rem' }} />
+                        <span style={{ fontSize: '0.875rem', fontWeight: 600 }}>
+                          {new Date(project.date).toLocaleDateString('en-GB', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                          })}
+                        </span>
                       </div>
                     </div>
                     
-                    <div className="flex items-center space-x-3">
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem'
+                    }}>
                       <a
                         href={project.github}
-                        className="p-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all duration-200"
+                        style={{
+                          padding: '0.5rem',
+                          color: '#9CA3AF',
+                          borderRadius: '0.5rem',
+                          transition: 'all 0.2s ease'
+                        }}
+                        className="hover:bg-[rgba(31,41,55,0.5)] hover:text-[#FFFFFF]"
                       >
-                        <Github className="w-5 h-5" />
+                        <Github style={{ width: '1.25rem', height: '1.25rem' }} />
                       </a>
                       <a
                         href={project.demo}
-                        className="p-2 text-gray-400 hover:text-white hover:bg-gray-800/50 rounded-lg transition-all duration-200"
+                        style={{
+                          padding: '0.5rem',
+                          color: '#9CA3AF',
+                          borderRadius: '0.5rem',
+                          transition: 'all 0.2s ease'
+                        }}
+                        className="hover:bg-[rgba(31,41,55,0.5)] hover:text-[#FFFFFF]"
                       >
-                        <ExternalLink className="w-5 h-5" />
+                        <ExternalLink style={{ width: '1.25rem', height: '1.25rem' }} />
                       </a>
-                      <button className="group/btn flex items-center space-x-2 text-red-400 hover:text-red-300 font-bold transition-colors">
+                      <button className="view-details" style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        color: '#EF4444',
+                        fontWeight: 700,
+                        transition: 'color 0.3s ease'
+                      }}>
                         <span>View Details</span>
-                        <ArrowRight className="w-4 h-4 group-hover/btn:translate-x-1 transition-transform" />
+                        <ArrowRight className="arrow" style={{
+                          width: '1rem',
+                          height: '1rem',
+                          transition: 'transform 0.3s ease'
+                        }} />
                       </button>
                     </div>
                   </div>
@@ -276,49 +532,123 @@ export default function Works() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-5xl mx-auto">
+      <section className="px-4 sm:px-6 lg:px-8" style={{ padding: '8rem 1rem' }}>
+        <div style={{ maxWidth: '64rem', margin: '0 auto' }}>
           <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: true }}
-            className="relative"
+            style={{ position: 'relative' }}
           >
-            <div className="bg-gradient-to-r from-gray-900/80 to-gray-800/80 backdrop-blur-xl border border-gray-700 rounded-3xl p-16 text-center relative overflow-hidden">
-              {/* Background Pattern */}
-              <div className="absolute inset-0 opacity-5">
-                <div className="absolute top-0 left-0 w-full h-full bg-gradient-to-r from-red-500 to-purple-500 rounded-3xl" />
+            <div className="background-blur" style={{
+              border: '1px solid #374151',
+              borderRadius: '1.5rem',
+              padding: '4rem',
+              textAlign: 'center',
+              position: 'relative',
+              overflow: 'hidden'
+            }}>
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                opacity: 0.05
+              }}>
+                <div style={{
+                  position: 'absolute',
+                  top: 0,
+                  left: 0,
+                  width: '100%',
+                  height: '100%',
+                  background: 'linear-gradient(to right, #EF4444, #A855F7)',
+                  borderRadius: '1.5rem'
+                }} />
               </div>
               
-              <div className="relative z-10">
-                <span className="text-sm font-mono text-red-400 tracking-widest uppercase mb-4 block">
+              <div style={{ position: 'relative', zIndex: 10 }}>
+                <span style={{
+                  display: 'block',
+                  fontFamily: 'monospace',
+                  fontSize: '0.875rem',
+                  color: '#EF4444',
+                  letterSpacing: '0.2em',
+                  textTransform: 'uppercase',
+                  marginBottom: '1rem'
+                }}>
                   Interested in my work?
                 </span>
-                <h2 className="text-4xl sm:text-5xl font-black text-white mb-8">
+                <h2
+                  style={{
+                    fontSize: '2.25rem',
+                    fontWeight: 900,
+                    color: '#FFFFFF',
+                    marginBottom: '2rem'
+                  }}
+                  className="sm:text-3xl"
+                >
                   Let&apos;s Collaborate
                 </h2>
-                <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
+                <p style={{
+                  fontSize: '1.25rem',
+                  color: '#D1D5DB',
+                  marginBottom: '3rem',
+                  maxWidth: '48rem',
+                  margin: '0 auto',
+                  lineHeight: 1.75
+                }}>
                   Ready to discuss how my security tools and research can help protect your infrastructure?
                 </p>
                 
-                <div className="flex flex-col sm:flex-row gap-6 justify-center">
+                <div style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '1.5rem',
+                  justifyContent: 'center'
+                }}>
                   <a
                     href="mailto:contact@example.com"
-                    className="group relative inline-flex items-center px-10 py-5 bg-gradient-to-r from-red-600 to-purple-600 text-white font-bold rounded-full text-lg overflow-hidden"
+                    className="button-gradient"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '1.25rem 2.5rem',
+                      color: '#FFFFFF',
+                      fontWeight: 700,
+                      borderRadius: '9999px',
+                      fontSize: '1.125rem',
+                      position: 'relative',
+                      overflow: 'hidden'
+                    }}
                   >
-                    <span className="relative z-10 flex items-center">
+                    <span style={{ position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center' }}>
                       Get In Touch
-                      <ArrowRight className="ml-3 w-6 h-6 group-hover:translate-x-1 transition-transform" />
+                      <ArrowRight style={{
+                        marginLeft: '0.75rem',
+                        width: '1.5rem',
+                        height: '1.5rem'
+                      }} className="group-hover:translate-x-1 transition-transform" />
                     </span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-red-500 to-purple-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    <div className="button-overlay" />
                   </a>
                   
                   <a
                     href="https://github.com"
-                    className="group inline-flex items-center px-10 py-5 border-2 border-gray-600 text-gray-300 font-bold rounded-full text-lg hover:border-red-400 hover:text-red-400 transition-all duration-300 backdrop-blur-sm bg-black/20"
+                    className="github-button"
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '1.25rem 2.5rem',
+                      border: '2px solid #4B5563',
+                      color: '#D1D5DB',
+                      fontWeight: 700,
+                      borderRadius: '9999px',
+                      fontSize: '1.125rem',
+                      backgroundColor: 'rgba(0, 0, 0, 0.2)',
+                      backdropFilter: 'blur(4px)',
+                      transition: 'all 0.3s ease'
+                    }}
                   >
-                    <Github className="w-6 h-6 mr-3" />
+                    <Github style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.75rem' }} />
                     View on GitHub
                   </a>
                 </div>
