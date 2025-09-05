@@ -4,9 +4,9 @@ import Navigation from "@/components/Navigation";
 import Script from 'next/script';
 
 export const metadata: Metadata = {
-  title: "bl4ckf0xk - Cybersecurity Portfolio",
+  title: "Kavindu Sahan Portfolio",
   description: "Cybersecurity professional specializing in exploit development, OT/ICS security, and Active Directory security",
-  keywords: ["cybersecurity", "exploit development", "OT security", "ICS security", "Active Directory", "penetration testing"],
+  keywords: ["cybersecurity", "exploit development", "OT security", "ICS security", "Active Directory", "penetration testing", "satellite security"],
   authors: [{ name: "bl4ckf0xk" }],
 };
 
