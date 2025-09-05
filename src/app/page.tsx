@@ -9,40 +9,40 @@ export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const vantaRef = useRef<HTMLDivElement>(null);
 
-  // useEffect(() => {
-  //   if (typeof window !== 'undefined' && vantaRef.current) {
-  //     const vantaEffect = window.VANTA?.FOG({
-  //       el: vantaRef.current,
-  //       mouseControls: true,
-  //       touchControls: true,
-  //       gyroControls: false,
-  //       minHeight: 200.00,
-  //       minWidth: 200.00,
-  //       highlightColor: 0xdc4147,
-  //       midtoneColor: 0x2a2424,
-  //       lowlightColor: 0x212137,
-  //       baseColor: 0x4a2c2c,
-  //       blurFactor: 0.43,
-  //       speed: 0.30,
-  //       zoom: 0.30
-  //     });
+  useEffect(() => {
+    if (typeof window !== 'undefined' && vantaRef.current) {
+      const vantaEffect = window.VANTA?.FOG({
+        el: vantaRef.current,
+        mouseControls: true,
+        touchControls: true,
+        gyroControls: false,
+        minHeight: 200.00,
+        minWidth: 200.00,
+        highlightColor: 0xdc4147,
+        midtoneColor: 0x2a2424,
+        lowlightColor: 0x212137,
+        baseColor: 0x4a2c2c,
+        blurFactor: 0.43,
+        speed: 0.30,
+        zoom: 0.30
+      });
 
-  //     return () => {
-  //       if (vantaEffect) {
-  //         vantaEffect.destroy();
-  //       }
-  //     };
-  //   }
-  // }, []);
+      return () => {
+        if (vantaEffect) {
+          vantaEffect.destroy();
+        }
+      };
+    }
+  }, []);
 
   return (
     <div ref={containerRef} className="min-h-screen overflow-hidden">
       {/* Vanta.js Fog Background */}
-      {/* <div 
+      <div 
         ref={vantaRef} 
         className="absolute inset-0 w-full h-full"
         style={{ zIndex: -1 }}
-      /> */}
+      />
       
       {/* Main Section with Motion Effects */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
