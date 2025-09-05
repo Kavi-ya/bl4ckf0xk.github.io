@@ -14,7 +14,7 @@ const nextConfig = {
   output: 'export',
   images: { unoptimized: true },
   basePath: '', // Root-level GitHub Pages
-  assetPrefix: './', // Relative asset prefix
+  assetPrefix: '', // Relative asset prefix
   distDir: 'out', // Explicit output directory
   // Ensure static export compatibility
   experimental: {
