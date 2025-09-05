@@ -18,13 +18,13 @@ export default function Home() {
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        highlightColor: 0xdc4147,
-        midtoneColor: 0x2a2424,
-        lowlightColor: 0x212137,
-        baseColor: 0x4a2c2c,
-        blurFactor: 0.43,
-        speed: 0.30,
-        zoom: 0.30
+        highlightColor: 0xffffff,
+        midtoneColor: 0xc3c1c1,
+        lowlightColor: 0x0,
+        baseColor: 0xffffff,
+        blurFactor: 0.67,
+        speed: 1.60,
+        zoom: 1.20
       });
 
       return () => {
@@ -137,10 +137,10 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.8, delay: 1.3 }}
             >
-              <a href="https://github.com/bl4ckf0xk" className="flex items-center justify-center min-h-[40px] min-w-[40px] group p-3 rounded-full bg-gray-800/50 hover:bg-red-500/20 transition-all duration-300">
+              <a href="https://github.com/bl4ckf0xk" target='_blank' className="flex items-center justify-center min-h-[40px] min-w-[40px] group p-3 rounded-full bg-gray-800/50 hover:bg-red-500/20 transition-all duration-300">
                 <Github className="w-6 h-6 text-gray-400 group-hover:text-red-400 transition-colors" />
               </a>
-              <a href="https://linkedin.com/in/kavindu-sahan" className="flex items-center justify-center min-h-[40px] min-w-[40px] group p-3 rounded-full bg-gray-800/50 hover:bg-blue-500/20 transition-all duration-300">
+              <a href="https://linkedin.com/in/kavindu-sahan" target='_blank' className="flex items-center justify-center min-h-[40px] min-w-[40px] group p-3 rounded-full bg-gray-800/50 hover:bg-blue-500/20 transition-all duration-300">
                 <Linkedin className="w-6 h-6 text-gray-400 group-hover:text-blue-400 transition-colors" />
               </a>
             </motion.div>
