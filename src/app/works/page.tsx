@@ -1,7 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code, Shield, Lock, Zap, ExternalLink, Github, ArrowRight, Star, Calendar, Tag } from 'lucide-react';
+import { Code, ExternalLink, Github, ArrowRight, Star, Calendar } from 'lucide-react';
 
 export default function Works() {
   const projects = [
@@ -296,7 +296,7 @@ export default function Works() {
                   Interested in my work?
                 </span>
                 <h2 className="text-4xl sm:text-5xl font-black text-white mb-8">
-                  Let's Collaborate
+                  Let&apos;s Collaborate
                 </h2>
                 <p className="text-xl text-gray-300 mb-12 max-w-3xl mx-auto leading-relaxed">
                   Ready to discuss how my security tools and research can help protect your infrastructure?

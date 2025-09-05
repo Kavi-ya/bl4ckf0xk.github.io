@@ -1,17 +1,11 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Calendar, Award, Code, Shield, Lock, Zap, Download, Mail, ArrowRight } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Award, Code, Shield, Lock, Zap, Download, Mail } from 'lucide-react';
 import { useRef } from 'react';
 
 export default function About() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, -100]);
 
   const timelineEvents = [
     {
@@ -144,7 +138,7 @@ export default function About() {
                 <h2 className="text-4xl font-black text-white mb-6">bl4ckf0xk</h2>
                 <div className="space-y-6 text-lg text-gray-300 leading-relaxed">
                   <p>
-                    I'm a dedicated cybersecurity professional with over 4 years of experience in 
+                    I&apos;m a dedicated cybersecurity professional with over 4 years of experience in 
                     protecting critical infrastructure and developing custom security solutions. 
                     My passion lies in understanding the intricate details of how systems can be 
                     compromised and building robust defenses against sophisticated attacks.

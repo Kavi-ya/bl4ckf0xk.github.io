@@ -1,24 +1,16 @@
 'use client';
 
-import { motion, useScroll, useTransform } from 'framer-motion';
-import { Shield, Terminal, Lock, Zap, ArrowRight, Github, Linkedin, Mail, ChevronDown } from 'lucide-react';
+import { motion } from 'framer-motion';
+import {Github, Linkedin} from 'lucide-react';
 import Link from 'next/link';
 import { useRef, useEffect } from 'react';
 
 export default function Home() {
   const containerRef = useRef<HTMLDivElement>(null);
   const vantaRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start end", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], [0, -50]);
-  const opacity = useTransform(scrollYProgress, [0, 0.5], [1, 0]);
 
   useEffect(() => {
     if (typeof window !== 'undefined' && vantaRef.current) {
-      // @ts-ignore
       const vantaEffect = window.VANTA?.FOG({
         el: vantaRef.current,
         mouseControls: true,
@@ -42,37 +34,6 @@ export default function Home() {
       };
     }
   }, []);
-
-  const specialties = [
-    { 
-      title: "Exploit Development", 
-      description: "Custom exploits and vulnerability research",
-      gradient: "from-red-600/20 to-red-900/20",
-      borderColor: "border-red-500/30",
-      iconColor: "text-red-400"
-    },
-    { 
-      title: "ICS/OT Security", 
-      description: "Industrial control systems protection",
-      gradient: "from-purple-600/20 to-purple-900/20",
-      borderColor: "border-purple-500/30",
-      iconColor: "text-purple-400"
-    },
-    { 
-      title: "Active Directory", 
-      description: "AD security and privilege escalation",
-      gradient: "from-orange-600/20 to-orange-900/20",
-      borderColor: "border-orange-500/30",
-      iconColor: "text-orange-400"
-    },
-    { 
-      title: "Penetration Testing", 
-      description: "Comprehensive security assessments",
-      gradient: "from-blue-600/20 to-blue-900/20",
-      borderColor: "border-blue-500/30",
-      iconColor: "text-blue-400"
-    },
-  ];
 
   return (
     <div ref={containerRef} className="min-h-screen overflow-hidden">
@@ -134,15 +95,13 @@ export default function Home() {
                 transition={{ duration: 0.8, delay: 0.5 }}
               >
                 Specializing in <span className="text-red-400 font-bold">Exploit Development</span>, 
-                <span className="text-gray-600 font-bold"> ICS/OT Security</span>,
-                <span className="text-gray-800 font-bold"> Satellite Security</span>, and 
-                <span className="text-gray-950 font-bold"> AD security</span> 
+                <span className="text-gray-950 font-bold"> ICS/OT Security</span>,
+                <span className="text-gray-950 font-bold"> Satellite Security</span>, and 
+                <span className="text-gray-950 font-bold"> AD Security</span> 
               </motion.p>
             </div>
 
             <div className="h-17"></div>
-
-            
 
             {/* CTA Buttons */}
             <motion.div
