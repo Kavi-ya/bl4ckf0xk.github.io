@@ -18,13 +18,13 @@ export default function Home() {
         gyroControls: false,
         minHeight: 200.00,
         minWidth: 200.00,
-        highlightColor: 0xffffff,
-        midtoneColor: 0xc3c1c1,
+        highlightColor: 0x0,
+        midtoneColor: 0x5f5f5f,
         lowlightColor: 0x0,
-        baseColor: 0xffffff,
-        blurFactor: 0.67,
-        speed: 1.60,
-        zoom: 1.20
+        baseColor: 0x0,
+        blurFactor: 0.52,
+        speed: 1.90,
+        zoom: 0.90
       });
 
       return () => {
@@ -79,7 +79,7 @@ export default function Home() {
               </h1>
               <h1 className="text-2xl sm:text-8xl lg:text-7xl font-black leading-none">
                 <motion.span
-                  className="block bg-gradient-to-r from-red-100 via-red-700 to-red-950 bg-clip-text text-transparent"
+                  className="block bg-gradient-to-r from-gray-100 via-gray-700 to-gray-950 bg-clip-text text-transparent"
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.8, delay: 0.4 }}

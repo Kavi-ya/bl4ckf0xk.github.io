@@ -31,10 +31,11 @@
   "include": [
     "**/*.ts",
     "**/*.tsx",
+    ".next/types/**/*.ts",
     "bl4ckf0xk.github.io/.next/types/**/*.ts",
     "next-env.d.ts",
-    ".next/types/**/*.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts",
+    "out/types/**/*.ts"
   ],
   "exclude": [
     "node_modules"
