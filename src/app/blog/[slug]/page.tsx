@@ -1,5 +1,5 @@
 import { getBlogBySlug, blogs } from '@/data/blogs';
-import BlogDetailClient from './BlogDetailClient';
+import BlogDetailClient from '@/app/blog/[slug]/BlogDetailClient';
 
 // Generate static params for all blog slugs
 export async function generateStaticParams() {
