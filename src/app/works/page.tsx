@@ -1,9 +1,15 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { Code, ExternalLink, Github, ArrowRight, Star, Calendar } from 'lucide-react';
+import { Code, ExternalLink, Github, ArrowRight, Star, Calendar, BookOpen, Clock, User, Tag } from 'lucide-react';
+import { useState } from 'react';
+import Link from 'next/link';
+import { blogs, blogCategories, type Blog } from '@/data/blogs';
 
 export default function Works() {
+  const [activeTab, setActiveTab] = useState<'projects' | 'blogs'>('projects');
+
+
   const projects = [
     {
       id: 1,
@@ -12,7 +18,7 @@ export default function Works() {
       category: "Exploit Development",
       technologies: ["C++", "Assembly", "Python", "WinAPI"],
       status: "Active",
-      featured: true,
+      featured: false,
       github: "https://github.com",
       demo: "https://demo.com",
       image: "/api/placeholder/600/400",
@@ -21,12 +27,12 @@ export default function Works() {
     },
     {
       id: 2,
-      title: "OT/ICS Security Scanner",
+      title: "ICS/OT Security Scanner",
       description: "Industrial Control Systems vulnerability scanner designed to identify security weaknesses in critical infrastructure environments.",
       category: "OT/ICS Security",
       technologies: ["Python", "Modbus", "DNP3", "SCADA"],
-      status: "Completed",
-      featured: true,
+      status: "In Development",
+      featured: false,
       github: "https://github.com",
       demo: "https://demo.com",
       image: "/api/placeholder/600/400",
@@ -82,7 +88,7 @@ export default function Works() {
       category: "Vulnerability Research",
       technologies: ["Python", "AFL", "GDB", "Radare2"],
       status: "Active",
-      featured: true,
+      featured: false,
       github: "https://github.com",
       demo: "https://demo.com",
       image: "/api/placeholder/600/400",
@@ -289,15 +295,71 @@ export default function Works() {
               color: '#D1D5DB',
               maxWidth: '64rem',
               margin: '0 auto',
-              lineHeight: 1.75
+              lineHeight: 1.75,
+              marginBottom: '3rem'
             }}>
               Security tools, frameworks, and research projects that demonstrate my expertise in cybersecurity
             </p>
+
+            {/* Tab Navigation */}
+            <div style={{
+              display: 'flex',
+              justifyContent: 'center',
+              gap: '1rem',
+              marginBottom: '2rem'
+            }}>
+              <button
+                onClick={() => setActiveTab('projects')}
+                style={{
+                  padding: '0.75rem 2rem',
+                  background: activeTab === 'projects' 
+                    ? 'linear-gradient(to right, #EF4444, #A855F7)' 
+                    : 'transparent',
+                  color: activeTab === 'projects' ? '#FFFFFF' : '#9CA3AF',
+                  border: activeTab === 'projects' 
+                    ? 'none' 
+                    : '2px solid #374151',
+                  borderRadius: '9999px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}
+              >
+                <Code style={{ width: '1.25rem', height: '1.25rem' }} />
+                Projects
+              </button>
+              <button
+                onClick={() => setActiveTab('blogs')}
+                style={{
+                  padding: '0.75rem 2rem',
+                  background: activeTab === 'blogs' 
+                    ? 'linear-gradient(to right, #EF4444, #A855F7)' 
+                    : 'transparent',
+                  color: activeTab === 'blogs' ? '#FFFFFF' : '#9CA3AF',
+                  border: activeTab === 'blogs' 
+                    ? 'none' 
+                    : '2px solid #374151',
+                  borderRadius: '9999px',
+                  fontWeight: 700,
+                  cursor: 'pointer',
+                  transition: 'all 0.3s ease',
+                  display: 'flex',
+                  alignItems: 'center',
+                  gap: '0.5rem'
+                }}
+              >
+                <BookOpen style={{ width: '1.25rem', height: '1.25rem' }} />
+                Blogs
+              </button>
+            </div>
           </motion.div>
         </div>
       </section>
 
-      {/* Projects Grid */}
+      {/* Content Section */}
       <section style={{
         padding: '5rem 1rem'
       }}>
@@ -305,39 +367,75 @@ export default function Works() {
           maxWidth: '80rem',
           margin: '0 auto'
         }}>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            style={{ marginBottom: '4rem' }}
-          >
-            <div style={{
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              marginBottom: '1.5rem'
-            }}>
-              <Code style={{ width: '2rem', height: '2rem', color: '#60A5FA' }} />
-              <h2
-                style={{
-                  fontSize: '3rem',
-                  fontWeight: 900,
-                  color: '#FFFFFF'
-                }}
-                className="sm:text-5xl"
-              >
-                Featured Projects
-              </h2>
-            </div>
-            <p style={{
-              fontSize: '1.25rem',
-              color: '#D1D5DB',
-              maxWidth: '48rem'
-            }}>
-              Handpicked projects showcasing advanced security research and tool development
-            </p>
-          </motion.div>
+          {activeTab === 'projects' ? (
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              style={{ marginBottom: '4rem' }}
+            >
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1.5rem'
+              }}>
+                <Code style={{ width: '2rem', height: '2rem', color: '#60A5FA' }} />
+                <h2
+                  style={{
+                    fontSize: '3rem',
+                    fontWeight: 900,
+                    color: '#FFFFFF'
+                  }}
+                  className="sm:text-5xl"
+                >
+                  Featured Projects & Talks
+                </h2>
+              </div>
+              <p style={{
+                fontSize: '1.25rem',
+                color: '#D1D5DB',
+                maxWidth: '48rem'
+              }}>
+                Handpicked projects showcasing advanced security research and tool development
+              </p>
+            </motion.div>
+          ) : (
+            <motion.div
+              initial={{ opacity: 0, y: 50 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              style={{ marginBottom: '4rem' }}
+            >
+              <div style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '1rem',
+                marginBottom: '1.5rem'
+              }}>
+                <BookOpen style={{ width: '2rem', height: '2rem', color: '#60A5FA' }} />
+                <h2
+                  style={{
+                    fontSize: '3rem',
+                    fontWeight: 900,
+                    color: '#FFFFFF'
+                  }}
+                  className="sm:text-5xl"
+                >
+                  Technical Blogs & Research
+                </h2>
+              </div>
+              <p style={{
+                fontSize: '1.25rem',
+                color: '#D1D5DB',
+                maxWidth: '48rem'
+              }}>
+                In-depth technical articles and research on cybersecurity topics
+              </p>
+            </motion.div>
+          )}
 
           <div
             className="grid gap-8 lg:grid-cols-2"
@@ -347,7 +445,7 @@ export default function Works() {
               gap: '2rem'
             }}
           >
-            {projects.map((project, index) => (
+            {activeTab === 'projects' ? projects.map((project, index) => (
               <motion.article
                 key={project.id}
                 initial={{ opacity: 0, y: 50 }}
@@ -526,135 +624,199 @@ export default function Works() {
                   </div>
                 </div>
               </motion.article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* CTA Section */}
-      <section className="px-4 sm:px-6 lg:px-8" style={{ padding: '8rem 1rem' }}>
-        <div style={{ maxWidth: '64rem', margin: '0 auto' }}>
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            style={{ position: 'relative' }}
-          >
-            <div className="background-blur" style={{
-              border: '1px solid #374151',
-              borderRadius: '1.5rem',
-              padding: '4rem',
-              textAlign: 'center',
-              position: 'relative',
-              overflow: 'hidden'
-            }}>
-              <div style={{
-                position: 'absolute',
-                inset: 0,
-                opacity: 0.05
-              }}>
+            )) : blogs.map((blog, index) => (
+              <motion.article
+                key={blog.id}
+                initial={{ opacity: 0, y: 50 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                viewport={{ once: true }}
+                className="project-card"
+                style={{
+                  position: 'relative',
+                  background: 'linear-gradient(to bottom right, rgba(17, 24, 39, 0.8), rgba(31, 41, 55, 0.8))',
+                  backdropFilter: 'blur(16px)',
+                  border: '1px solid #374151',
+                  borderRadius: '1.5rem',
+                  padding: '2rem',
+                  overflow: 'hidden'
+                }}
+              >
                 <div style={{
                   position: 'absolute',
-                  top: 0,
-                  left: 0,
-                  width: '100%',
-                  height: '100%',
-                  background: 'linear-gradient(to right, #EF4444, #A855F7)',
-                  borderRadius: '1.5rem'
-                }} />
-              </div>
-              
-              <div style={{ position: 'relative', zIndex: 10 }}>
-                <span style={{
-                  display: 'block',
-                  fontFamily: 'monospace',
-                  fontSize: '0.875rem',
-                  color: '#EF4444',
-                  letterSpacing: '0.2em',
-                  textTransform: 'uppercase',
-                  marginBottom: '1rem'
+                  inset: 0,
+                  opacity: 0.05
                 }}>
-                  Interested in my work?
-                </span>
-                <h2
-                  style={{
-                    fontSize: '2.25rem',
+                  <div style={{
+                    position: 'absolute',
+                    top: 0,
+                    left: 0,
+                    width: '100%',
+                    height: '100%',
+                    background: getCategoryColor(blog.category),
+                    borderRadius: '1.5rem'
+                  }} />
+                </div>
+                
+                <div style={{ position: 'relative', zIndex: 10 }}>
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'flex-start',
+                    justifyContent: 'space-between',
+                    marginBottom: '1.5rem'
+                  }}>
+                    <div style={{
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '0.75rem'
+                    }}>
+                      {blog.featured && (
+                        <span style={{
+                          padding: '0.25rem 0.75rem',
+                          background: 'linear-gradient(to right, #FBBF24, #F97316)',
+                          color: '#000000',
+                          fontSize: '0.875rem',
+                          fontWeight: 700,
+                          borderRadius: '9999px',
+                          display: 'flex',
+                          alignItems: 'center'
+                        }}>
+                          <Star style={{ width: '0.75rem', height: '0.75rem', marginRight: '0.25rem' }} />
+                          Featured
+                        </span>
+                      )}
+                      <span className="category-badge" style={{
+                        background: getCategoryColor(blog.category),
+                        color: '#FFFFFF'
+                      }}>
+                        {blog.category}
+                      </span>
+                    </div>
+                    <span className="status-badge" style={{
+                      color: '#34D399',
+                      backgroundColor: 'rgba(52, 211, 153, 0.1)',
+                      border: '1px solid rgba(52, 211, 153, 0.2)',
+                      padding: '0.25rem 0.75rem',
+                      borderRadius: '9999px',
+                      fontSize: '0.75rem',
+                      fontWeight: 700
+                    }}>
+                      {blog.status}
+                    </span>
+                  </div>
+                  
+                  <h3 style={{
+                    fontSize: '1.875rem',
                     fontWeight: 900,
                     color: '#FFFFFF',
-                    marginBottom: '2rem'
-                  }}
-                  className="sm:text-3xl"
-                >
-                  Let&apos;s Collaborate
-                </h2>
-                <p style={{
-                  fontSize: '1.25rem',
-                  color: '#D1D5DB',
-                  marginBottom: '3rem',
-                  maxWidth: '48rem',
-                  margin: '0 auto',
-                  lineHeight: 1.75
-                }}>
-                  Ready to discuss how my security tools and research can help protect your infrastructure?
-                </p>
-                
-                <div style={{
-                  display: 'flex',
-                  flexDirection: 'column',
-                  gap: '1.5rem',
-                  justifyContent: 'center'
-                }}>
-                  <a
-                    href="mailto:contact@example.com"
-                    className="button-gradient"
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      padding: '1.25rem 2.5rem',
-                      color: '#FFFFFF',
-                      fontWeight: 700,
-                      borderRadius: '9999px',
-                      fontSize: '1.125rem',
-                      position: 'relative',
-                      overflow: 'hidden'
-                    }}
-                  >
-                    <span style={{ position: 'relative', zIndex: 10, display: 'flex', alignItems: 'center' }}>
-                      Get In Touch
-                      <ArrowRight style={{
-                        marginLeft: '0.75rem',
-                        width: '1.5rem',
-                        height: '1.5rem'
-                      }} className="group-hover:translate-x-1 transition-transform" />
-                    </span>
-                    <div className="button-overlay" />
-                  </a>
+                    marginBottom: '1rem',
+                    transition: 'color 0.3s ease'
+                  }} className="group-hover:text-[#EF4444]">
+                    {blog.title}
+                  </h3>
                   
-                  <a
-                    href="https://github.com"
-                    className="github-button"
-                    style={{
-                      display: 'inline-flex',
+                  <p style={{
+                    color: '#D1D5DB',
+                    marginBottom: '1.5rem',
+                    fontSize: '1.125rem',
+                    lineHeight: 1.75
+                  }}>
+                    {blog.excerpt}
+                  </p>
+                  
+                  <div style={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: '0.5rem',
+                    marginBottom: '1.5rem'
+                  }}>
+                    {blog.tags.map((tag) => (
+                      <span key={tag} className="tech-badge" style={{
+                        padding: '0.25rem 0.75rem',
+                        backgroundColor: 'rgba(31, 41, 55, 0.5)',
+                        color: '#9CA3AF',
+                        border: '1px solid #4B5563',
+                        borderRadius: '9999px',
+                        fontSize: '0.875rem'
+                      }}>
+                        <Tag style={{ width: '0.75rem', height: '0.75rem', marginRight: '0.25rem', display: 'inline' }} />
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                  
+                  <div style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'space-between'
+                  }}>
+                    <div style={{
+                      display: 'flex',
                       alignItems: 'center',
-                      padding: '1.25rem 2.5rem',
-                      border: '2px solid #4B5563',
-                      color: '#D1D5DB',
-                      fontWeight: 700,
-                      borderRadius: '9999px',
-                      fontSize: '1.125rem',
-                      backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                      backdropFilter: 'blur(4px)',
-                      transition: 'all 0.3s ease'
-                    }}
-                  >
-                    <Github style={{ width: '1.5rem', height: '1.5rem', marginRight: '0.75rem' }} />
-                    View on GitHub
-                  </a>
+                      gap: '1rem',
+                      color: '#9CA3AF'
+                    }}>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}>
+                        <User style={{ width: '1rem', height: '1rem' }} />
+                        <span style={{ fontSize: '0.875rem', fontWeight: 600 }}>
+                          {blog.author}
+                        </span>
+                      </div>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}>
+                        <Calendar style={{ width: '1rem', height: '1rem' }} />
+                        <span style={{ fontSize: '0.875rem', fontWeight: 600 }}>
+                          {new Date(blog.date).toLocaleDateString('en-GB', {
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                          })}
+                        </span>
+                      </div>
+                      <div style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem'
+                      }}>
+                        <Clock style={{ width: '1rem', height: '1rem' }} />
+                        <span style={{ fontSize: '0.875rem', fontWeight: 600 }}>
+                          {blog.readTime}
+                        </span>
+                      </div>
+                    </div>
+                    
+                    <Link 
+                      href={`/blog/${blog.slug}`}
+                      className="view-details" 
+                      style={{
+                        display: 'flex',
+                        alignItems: 'center',
+                        gap: '0.5rem',
+                        color: '#EF4444',
+                        fontWeight: 700,
+                        transition: 'color 0.3s ease',
+                        textDecoration: 'none'
+                      }}
+                    >
+                      <span>Read More</span>
+                      <ArrowRight className="arrow" style={{
+                        width: '1rem',
+                        height: '1rem',
+                        transition: 'transform 0.3s ease'
+                      }} />
+                    </Link>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </motion.div>
+              </motion.article>
+            ))}
+          </div>
         </div>
       </section>
     </div>

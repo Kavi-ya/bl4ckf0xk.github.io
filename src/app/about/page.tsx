@@ -697,7 +697,7 @@ export default function About() {
                     <div
                       style={{
                         padding: '0.75rem',
-                        background: 'linear-gradient(to right, #dc2626, #9333ea)',
+                        background: 'linear-gradient(to right,rgb(221, 146, 7),rgb(144, 61, 13))',
                         borderRadius: '0.75rem',
                       }}
                     >
