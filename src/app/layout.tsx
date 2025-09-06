@@ -8,6 +8,9 @@ export const metadata: Metadata = {
   description: "Cybersecurity professional specializing in exploit development, OT/ICS security, and Active Directory security",
   keywords: ["cybersecurity", "exploit development", "OT security", "ICS security", "Active Directory", "penetration testing", "satellite security"],
   authors: [{ name: "bl4ckf0xk" }],
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export const viewport = {
