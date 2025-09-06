@@ -1,11 +1,12 @@
 'use client';
 
-import { Award, Code, Shield, Lock, Zap, Download, Mail } from 'lucide-react';
+import { Award, Code, Shield, Lock, Zap, Download, Mail, CircleCheck } from 'lucide-react';
 import { useEffect, useState } from 'react';
 
 export default function About() {
   const [isVisible, setIsVisible] = useState({});
   const [windowWidth, setWindowWidth] = useState(0); // Initialize with 0
+  const [isProfileHovered, setIsProfileHovered] = useState(false);
 
   useEffect(() => {
     // Set initial window width on client-side
@@ -41,6 +42,7 @@ export default function About() {
 
   const timelineEvents = [
     {
+      id: "cybersecurity-journey-2020",
       year: "2020",
       title: "Started Cybersecurity Journey",
       description: "Began formal education in cybersecurity and ethical hacking, focusing on network security fundamentals and penetration testing methodologies.",
@@ -50,15 +52,37 @@ export default function About() {
       borderColor: "border-red-500/30",
     },
     {
+      id: "windows-internals-2021",
       year: "2021",
-      title: "First Security Certification",
-      description: "Obtained CompTIA Security+ and began specializing in network security, expanding knowledge in threat detection and incident response.",
+      title: "Started to learn about Windows Internals",
+      description: "Researched about attacking windows systems and how to defend them at the same time. Started to focus on Windows Internals to develop malware.",
       icon: Award,
       color: "bg-gradient-to-r from-purple-500 to-purple-600",
       bgColor: "bg-gradient-to-br from-purple-500/10 to-purple-900/20",
       borderColor: "border-purple-500/30",
     },
     {
+      id: "tryhackme-1percent-2021",
+      year: "2021",
+      title: "Became 1% in TryHackMe",
+      description: "Learned about every aspect of cybersecurity and also in a short time period and became a 1% user in TryHackMe and 6th rank in Sri Lankan Leaderboard.",
+      icon: Shield,
+      color: "bg-gradient-to-r from-purple-500 to-purple-600",
+      bgColor: "bg-gradient-to-br from-purple-500/10 to-purple-900/20",
+      borderColor: "border-purple-500/30",
+    },
+    {
+      id: "buffer-overflow-2021",
+      year: "2021",
+      title: "Started to learn about Buffer Overflow Attacks",
+      description: "Became curious about how memory works inside applications. Began researching buffer overflow attacks and working to master them.",
+      icon: Code,
+      color: "bg-gradient-to-r from-purple-500 to-purple-600",
+      bgColor: "bg-gradient-to-br from-purple-500/10 to-purple-900/20",
+      borderColor: "border-purple-500/30",
+    },
+    {
+      id: "exploit-development-2022",
       year: "2022",
       title: "Exploit Development Focus",
       description: "Deep dive into reverse engineering and custom exploit development, mastering low-level programming and vulnerability research techniques.",
@@ -68,18 +92,80 @@ export default function About() {
       borderColor: "border-orange-500/30",
     },
     {
-      year: "2023",
-      title: "OT/ICS Security Specialization",
-      description: "Specialized in Industrial Control Systems and Operational Technology security, protecting critical infrastructure from cyber threats.",
+      id: "cyber-apocalypse-2024",
+      year: "2024",
+      title: "Gained 748th position in Cyber Apocalypse CTF",
+      description: "Went to HTB Cyber Apocalypse in solo and from 5694 teams able to secure 748 place.",
       icon: Lock,
-      color: "bg-gradient-to-r from-blue-500 to-blue-600",
-      bgColor: "bg-gradient-to-br from-blue-500/10 to-blue-900/20",
-      borderColor: "border-blue-500/30",
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      bgColor: "bg-gradient-to-br from-orange-500/10 to-orange-900/20",
+      borderColor: "border-orange-500/30",
     },
     {
+      id: "certs-2024",
       year: "2024",
-      title: "Active Directory Expert",
-      description: "Became expert in AD security, privilege escalation, and lateral movement techniques, developing advanced attack and defense strategies.",
+      title: "Certificates Achieved in 2024",
+      description: "Achived Cisco CyberOps Associate Certification from Cisco and DevSecOps, SOC Level 1 and SOC Level 2 certificates from TryHackMe.",
+      icon: Shield,
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      bgColor: "bg-gradient-to-br from-orange-500/10 to-orange-900/20",
+      borderColor: "border-orange-500/30",
+    },
+    {
+      id: "iit-induction-2024",
+      year: "2024",
+      title: "IIT Infoschol Program",
+      description: "Selected for the IIT Infoschol scholarship program, successfully completing it with a placement at Inivos Consulting Company. At the same time, I began my Computer Science degree at the University of Westminster.",
+      icon: Zap,
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      bgColor: "bg-gradient-to-br from-orange-500/10 to-orange-900/20",
+      borderColor: "border-orange-500/30",
+    },
+    {
+      id: "iit-ideathon-2024",
+      year: "2024",
+      title: "Achived 2nd place in Ideathon",
+      description: "Participated in IIT CuttingEdge Exhibition and completed in Ideathon challenge. My team was able to secure the second place in Ideathon competition.",
+      icon: Code,
+      color: "bg-gradient-to-r from-orange-500 to-orange-600",
+      bgColor: "bg-gradient-to-br from-orange-500/10 to-orange-900/20",
+      borderColor: "border-orange-500/30",
+    },
+    {
+      id: "htb-prolab-2025",
+      year: "2025",
+      title: "Played HTB Prolabs",
+      description: "Successfully completed Dante and Full House Prolabs and Nearly completed the Alchemy Prolab.",
+      icon: CircleCheck,
+      color: "bg-gradient-to-r from-green-500 to-green-600",
+      bgColor: "bg-gradient-to-br from-green-500/10 to-green-900/20",
+      borderColor: "border-green-500/30",
+    },
+    {
+      id: "prohacker-htb-2025",
+      year: "2025",
+      title: "Reached ProHacker Level",
+      description: "Pwned 50% of HTB content and able to come to the ProHacker level in HTB.",
+      icon: Zap,
+      color: "bg-gradient-to-r from-green-500 to-green-600",
+      bgColor: "bg-gradient-to-br from-green-500/10 to-green-900/20",
+      borderColor: "border-green-500/30",
+    },
+    {
+      id: "certs-2025",
+      year: "2025",
+      title: "Certifications so far in 2025",
+      description: "Earned the COWA (Certified Offensive Windows API Developer) and MCRTA (Multi Cloud Red Team Analyst) certifications.",
+      icon: Zap,
+      color: "bg-gradient-to-r from-green-500 to-green-600",
+      bgColor: "bg-gradient-to-br from-green-500/10 to-green-900/20",
+      borderColor: "border-green-500/30",
+    },
+    {
+      id: "present-2025",
+      year: "2025",
+      title: "Right Now",
+      description: "Learning about ICS and OT technologies in depth.",
       icon: Zap,
       color: "bg-gradient-to-r from-green-500 to-green-600",
       bgColor: "bg-gradient-to-br from-green-500/10 to-green-900/20",
@@ -90,7 +176,7 @@ export default function About() {
   const skills = [
     { name: "Exploit Development", color: "bg-gradient-to-r from-red-500 to-red-600" },
     { name: "ICS/OT Security", color: "bg-gradient-to-r from-purple-500 to-purple-600" },
-    { name: "Active Directory", color: "bg-gradient-to-r from-orange-500 to-orange-600" },
+    { name: "Active Directory Security", color: "bg-gradient-to-r from-orange-500 to-orange-600" },
     { name: "Penetration Testing", color: "bg-gradient-to-r from-blue-500 to-blue-600" },
     { name: "Reverse Engineering", color: "bg-gradient-to-r from-green-500 to-green-600" },
     { name: "Malware Analysis", color: "bg-gradient-to-r from-pink-500 to-pink-600" },
@@ -101,6 +187,8 @@ export default function About() {
   const certifications = [
     { name: "COWA", full: "Certified Offensive Windows API Developer", year: "2025" },
     { name: "MCRTA", full: "Multi Cloud Red Team Analyst", year: "2025" },
+    { name: "Dante Prolab", full: "HTB Dante Prolab Completed", year: "2024" },
+    { name: "Full House Prolab", full: "HTB Full House Prolab Completed", year: "2024" },
   ];
 
   return (
@@ -204,7 +292,7 @@ export default function About() {
                 lineHeight: '1.6',
               }}
             >
-              Passionate cybersecurity professional with deep expertise in Exploit development, ICS/OT security, and Active Directory security
+              Passionate cybersecurity professional with deep expertise in Exploit Development, ICS/OT Security, and Active Directory Security
             </p>
           </div>
 
@@ -236,8 +324,10 @@ export default function About() {
                     marginBottom: '1.5rem',
                   }}
                 >
-                  bl4ckf0xk
+                  Kavindu Sahan 
+                  <p>(aka bl4ckf0xk)</p>
                 </h2>
+                <h3>(aka bl4ckf0xk)</h3>
                 <div
                   style={{
                     display: 'flex',
@@ -249,72 +339,34 @@ export default function About() {
                   }}
                 >
                   <p>
-                    I&apos;m a dedicated cybersecurity professional with over 4 years of experience in protecting critical infrastructure and developing custom security solutions. My passion lies in understanding the intricate details of how systems can be compromised and building robust defenses against sophisticated attacks.
+                    I&apos;m a dedicated cybersecurity professional with more than 4 years of experience in protecting critical infrastructure and developing custom security solutions. My passion lies in understanding the intricacies of system compromise and building robust defenses against sophisticated attacks.
                   </p>
                   <p>
-                    Specializing in exploit development, I create custom tools and techniques to identify vulnerabilities before malicious actors can exploit them. My work in OT/ICS security focuses on protecting industrial control systems that are critical to our infrastructure.
+                    Specializing in exploit development, I create custom tools and techniques to identify vulnerabilities before malicious actors can exploit them. My work in ICS/OT security focuses on protecting industrial control systems that are critical to our infrastructure.
                   </p>
                 </div>
-                <div
-                  style={{
-                    display: 'flex',
-                    flexDirection: 'column',
-                    gap: '1rem',
-                    marginTop: '2rem',
-                  }}
-                >
-                  <button
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '1rem 2rem',
-                      background: 'linear-gradient(to right, #dc2626, #9333ea)',
-                      color: '#ffffff',
-                      fontWeight: '700',
-                      borderRadius: '9999px',
-                      border: 'none',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      fontSize: '1rem',
-                    }}
-                  >
-                    <Download size={20} style={{ marginRight: '0.5rem' }} />
-                    Download Resume
-                  </button>
-                  <button
-                    style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      padding: '1rem 2rem',
-                      border: '2px solid #4b5563',
-                      color: '#d1d5db',
-                      fontWeight: '700',
-                      borderRadius: '9999px',
-                      background: 'rgba(0, 0, 0, 0.2)',
-                      cursor: 'pointer',
-                      transition: 'all 0.3s ease',
-                      fontSize: '1rem',
-                    }}
-                  >
-                    <Mail size={20} style={{ marginRight: '0.5rem' }} />
-                    Get In Touch
-                  </button>
-                </div>
+                
               </div>
               <div style={{ display: 'flex', justifyContent: 'center' }}>
-                <div style={{ position: 'relative' }}>
+                <div 
+                  style={{ position: 'relative' }}
+                  onMouseEnter={() => setIsProfileHovered(true)}
+                  onMouseLeave={() => setIsProfileHovered(false)}
+                >
                   <div
                     style={{
                       width: 'clamp(15rem, 20vw, 20rem)',
                       height: 'clamp(15rem, 20vw, 20rem)',
-                      background: 'linear-gradient(to right, #dc2626, #9333ea, #ea580c)',
+                      background: isProfileHovered 
+                        ? 'linear-gradient(to right, rgb(255, 3, 3), rgb(99, 41, 41), rgb(92, 92, 92))' 
+                        : 'linear-gradient(to right,rgb(92, 92, 92),rgb(99, 41, 41),rgb(255, 3, 3))',
                       borderRadius: '50%',
                       display: 'flex',
                       alignItems: 'center',
                       justifyContent: 'center',
                       padding: '4px',
+                      transition: 'all 0.3s ease',
+                      transform: isProfileHovered ? 'scale(1.05)' : 'scale(1)',
                     }}
                   >
                     <div
@@ -326,9 +378,21 @@ export default function About() {
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
+                        overflow: 'hidden',
                       }}
                     >
-                      <Shield size={120} style={{ color: '#ef4444' }} />
+                      <img
+                        src={isProfileHovered ? "/profile-hover.jpeg" : "/profile.jpeg"}
+                        alt="Kavindu Sahan"
+                        style={{
+                          width: '100%',
+                          height: '100%',
+                          borderRadius: '50%',
+                          objectFit: 'cover',
+                          transition: 'all 0.3s ease',
+                          filter: isProfileHovered ? 'brightness(1.1) contrast(1.1)' : 'none',
+                        }}
+                      />
                     </div>
                   </div>
                   <div
@@ -350,7 +414,7 @@ export default function About() {
                       left: '-1rem',
                       width: '1.5rem',
                       height: '1.5rem',
-                      backgroundColor: '#9333ea',
+                      backgroundColor: 'rgb(92, 92, 92)',
                       borderRadius: '50%',
                       animation: 'pulse 2s ease-in-out infinite',
                       animationDelay: '1s',
@@ -428,15 +492,15 @@ export default function About() {
                 const Icon = event.icon;
                 return (
                   <div
-                    key={event.year}
-                    id={`animate-timeline-${index}`}
+                    key={event.id}
+                    id={`animate-timeline-${event.id}`}
                     style={{
                       position: 'relative',
                       display: 'flex',
                       alignItems: 'center',
                       transition: 'all 1s ease',
-                      opacity: (isVisible as Record<string, boolean>)[`animate-timeline-${index}`] ? 1 : 0,
-                      transform: (isVisible as Record<string, boolean>)[`animate-timeline-${index}`] ? 'translateX(0)' : 'translateX(-40px)',
+                      opacity: (isVisible as Record<string, boolean>)[`animate-timeline-${event.id}`] ? 1 : 0,
+                      transform: (isVisible as Record<string, boolean>)[`animate-timeline-${event.id}`] ? 'translateX(0)' : 'translateX(-40px)',
                     }}
                   >
                     {/* Timeline Dot */}
@@ -540,128 +604,6 @@ export default function About() {
                 );
               })}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Skills Section */}
-      <section
-        style={{
-          paddingTop: '5rem',
-          paddingBottom: '5rem',
-          paddingLeft: '1rem',
-          paddingRight: '1rem',
-        }}
-      >
-        <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
-          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
-            <span
-              style={{
-                fontSize: '0.875rem',
-                fontFamily: 'monospace',
-                color: '#ef4444',
-                letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-                marginBottom: '1rem',
-                display: 'block',
-              }}
-            >
-              Technical Expertise
-            </span>
-            <h2
-              style={{
-                fontSize: 'clamp(2.5rem, 6vw, 4rem)',
-                fontWeight: '900',
-                color: '#ffffff',
-                marginBottom: '1.5rem',
-              }}
-            >
-              Skills & Proficiencies
-            </h2>
-            <p
-              style={{
-                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-                color: '#d1d5db',
-                maxWidth: '48rem',
-                margin: '0 auto',
-                lineHeight: '1.6',
-              }}
-            >
-              Expertise across various cybersecurity domains and technologies
-            </p>
-          </div>
-
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
-              gap: '2rem',
-            }}
-          >
-            {skills.map((skill, index) => (
-              <div
-                key={skill.name}
-                id={`animate-skill-${index}`}
-                style={{
-                  background: 'linear-gradient(to right, rgba(17, 24, 39, 0.5), rgba(31, 41, 55, 0.5))',
-                  backdropFilter: 'blur(8px)',
-                  border: '1px solid rgba(75, 85, 99, 0.5)',
-                  borderRadius: '1rem',
-                  padding: '2rem',
-                  transition: 'all 0.5s ease',
-                  opacity: (isVisible as Record<string, boolean>)[`animate-skill-${index}`] ? 1 : 0,
-                  transform: (isVisible as Record<string, boolean>)[`animate-skill-${index}`] ? 'translateY(0)' : 'translateY(40px)',
-                  cursor: 'pointer',
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.transform = 'scale(1.05)';
-                  e.currentTarget.style.borderColor = 'rgba(75, 85, 99, 0.8)';
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.transform = 'scale(1)';
-                  e.currentTarget.style.borderColor = 'rgba(75, 85, 99, 0.5)';
-                }}
-              >
-                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
-                  <div
-                    style={{
-                      display: 'flex',
-                      justifyContent: 'space-between',
-                      alignItems: 'center',
-                    }}
-                  >
-                    <span
-                      style={{
-                        fontSize: 'clamp(1rem, 2vw, 1.25rem)',
-                        fontWeight: '700',
-                        color: '#ffffff',
-                      }}
-                    >
-                      {skill.name}
-                    </span>
-                  </div>
-                  <div
-                    style={{
-                      width: '100%',
-                      height: '12px',
-                      backgroundColor: '#1f2937',
-                      borderRadius: '6px',
-                      overflow: 'hidden',
-                    }}
-                  >
-                    <div
-                      style={{
-                        height: '100%',
-                        background: skill.color.replace('bg-gradient-to-r', 'linear-gradient(to right,'),
-                        borderRadius: '6px',
-                        transition: 'width 1.5s ease-out',
-                        width: (isVisible as Record<string, boolean>)[`animate-skill-${index}`] ? '100%' : '0%',
-                      }}
-                    />
-                  </div>
-                </div>
-              </div>
-            ))}
           </div>
         </div>
       </section>
@@ -794,6 +736,128 @@ export default function About() {
                   >
                     {cert.full}
                   </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section
+        style={{
+          paddingTop: '5rem',
+          paddingBottom: '5rem',
+          paddingLeft: '1rem',
+          paddingRight: '1rem',
+        }}
+      >
+        <div style={{ maxWidth: '80rem', margin: '0 auto' }}>
+          <div style={{ textAlign: 'center', marginBottom: '4rem' }}>
+            <span
+              style={{
+                fontSize: '0.875rem',
+                fontFamily: 'monospace',
+                color: '#ef4444',
+                letterSpacing: '0.1em',
+                textTransform: 'uppercase',
+                marginBottom: '1rem',
+                display: 'block',
+              }}
+            >
+              Technical Expertise
+            </span>
+            <h2
+              style={{
+                fontSize: 'clamp(2.5rem, 6vw, 4rem)',
+                fontWeight: '900',
+                color: '#ffffff',
+                marginBottom: '1.5rem',
+              }}
+            >
+              Skills & Proficiencies
+            </h2>
+            <p
+              style={{
+                fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                color: '#d1d5db',
+                maxWidth: '48rem',
+                margin: '0 auto',
+                lineHeight: '1.6',
+              }}
+            >
+              Expertise across various cybersecurity domains and technologies
+            </p>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '2rem',
+            }}
+          >
+            {skills.map((skill, index) => (
+              <div
+                key={skill.name}
+                id={`animate-skill-${index}`}
+                style={{
+                  background: 'linear-gradient(to right, rgba(17, 24, 39, 0.5), rgba(31, 41, 55, 0.5))',
+                  backdropFilter: 'blur(8px)',
+                  border: '1px solid rgba(75, 85, 99, 0.5)',
+                  borderRadius: '1rem',
+                  padding: '2rem',
+                  transition: 'all 0.5s ease',
+                  opacity: (isVisible as Record<string, boolean>)[`animate-skill-${index}`] ? 1 : 0,
+                  transform: (isVisible as Record<string, boolean>)[`animate-skill-${index}`] ? 'translateY(0)' : 'translateY(40px)',
+                  cursor: 'pointer',
+                }}
+                onMouseEnter={(e) => {
+                  e.currentTarget.style.transform = 'scale(1.05)';
+                  e.currentTarget.style.borderColor = 'rgba(75, 85, 99, 0.8)';
+                }}
+                onMouseLeave={(e) => {
+                  e.currentTarget.style.transform = 'scale(1)';
+                  e.currentTarget.style.borderColor = 'rgba(75, 85, 99, 0.5)';
+                }}
+              >
+                <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem' }}>
+                  <div
+                    style={{
+                      display: 'flex',
+                      justifyContent: 'space-between',
+                      alignItems: 'center',
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontSize: 'clamp(1rem, 2vw, 1.25rem)',
+                        fontWeight: '700',
+                        color: '#ffffff',
+                      }}
+                    >
+                      {skill.name}
+                    </span>
+                  </div>
+                  <div
+                    style={{
+                      width: '100%',
+                      height: '12px',
+                      backgroundColor: '#1f2937',
+                      borderRadius: '6px',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <div
+                      style={{
+                        height: '100%',
+                        background: skill.color.replace('bg-gradient-to-r', 'linear-gradient(to right,'),
+                        borderRadius: '6px',
+                        transition: 'width 1.5s ease-out',
+                        width: (isVisible as Record<string, boolean>)[`animate-skill-${index}`] ? '100%' : '0%',
+                      }}
+                    />
+                  </div>
                 </div>
               </div>
             ))}
