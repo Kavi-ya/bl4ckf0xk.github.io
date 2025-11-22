@@ -1,22 +1,59 @@
 import type { Metadata } from "next";
+import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import Navigation from "@/components/Navigation";
-import Script from 'next/script';
+
+const inter = Inter({
+  variable: "--font-inter",
+  subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
 
 export const metadata: Metadata = {
-  title: "Kavindu Sahan Portfolio",
-  description: "Cybersecurity professional specializing in exploit development, OT/ICS security, and Active Directory security",
-  keywords: ["cybersecurity", "exploit development", "OT security", "ICS security", "Active Directory", "penetration testing", "satellite security"],
-  authors: [{ name: "bl4ckf0xk" }],
+  metadataBase: new URL('https://bl4ckf0xk.github.io'),
+  title: {
+    default: 'Kavindu Sahan | Exploit Developer & Security Specialist',
+    template: '%s | Kavindu Sahan'
+  },
+  description: 'Portfolio of Kavindu Sahan (bl4ckf0xk), an Exploit Developer and ICS/OT Security Specialist. Explore my projects, research, and blog posts.',
+  keywords: ['Exploit Development', 'ICS Security', 'OT Security', 'Active Directory', 'Cybersecurity', 'Red Teaming', 'Malware Analysis'],
+  authors: [{ name: 'Kavindu Sahan', url: 'https://bl4ckf0xk.github.io' }],
+  creator: 'Kavindu Sahan',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://bl4ckf0xk.github.io',
+    title: 'Kavindu Sahan | Exploit Developer & Security Specialist',
+    description: 'Portfolio of Kavindu Sahan (bl4ckf0xk), an Exploit Developer and ICS/OT Security Specialist.',
+    siteName: 'Kavindu Sahan Portfolio',
+    images: [
+      {
+        url: '/og-image.png', // We should probably create this or use a placeholder
+        width: 1200,
+        height: 630,
+        alt: 'Kavindu Sahan Portfolio'
+      }
+    ]
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Kavindu Sahan | Exploit Developer & Security Specialist',
+    description: 'Portfolio of Kavindu Sahan (bl4ckf0xk), an Exploit Developer and ICS/OT Security Specialist.',
+    creator: '@bl4ckf0xk', // Assuming this handle based on previous context, or we can omit
+    images: ['/og-image.png']
+  },
   icons: {
-    icon: "/favicon.ico",
+    icon: '/favicon.svg',
+    shortcut: '/favicon.svg',
+    apple: '/favicon.svg',
   },
 };
 
-export const viewport = {
-  width: "device-width",
-  initialScale: 1,
-};
+import { Dock } from "@/components/layout/Dock";
+import { Footer } from "@/components/layout/Footer";
 
 export default function RootLayout({
   children,
@@ -24,18 +61,16 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
-      <head>
-        <Script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js" strategy="beforeInteractive" />
-        <Script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.fog.min.js" strategy="beforeInteractive" />
-      </head>
-      <body className="min-h-screen bg-black text-ash-100 antialiased">
-        <div className="blur-bg cyber-grid min-h-screen">
-          <Navigation />
-          <main className="relative z-10">
-            {children}
-          </main>
-        </div>
+    <html lang="en" suppressHydrationWarning>
+      <body
+        className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-hacker-bg text-white selection:bg-hacker-blue selection:text-black min-h-screen flex flex-col`}
+      >
+        {/* <Navbar /> */}
+        <main className="flex-grow pt-16 pb-24">
+          {children}
+        </main>
+        <Dock />
+        <Footer />
       </body>
     </html>
   );

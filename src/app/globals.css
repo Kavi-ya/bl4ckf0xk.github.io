@@ -1,187 +1,88 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300;400;500;600;700&display=swap');
 @import "tailwindcss";
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@theme {
+  --color-hacker-bg: #0a0a0a;
+  --color-hacker-blue: #00f0ff;
+  --color-hacker-red: #ff003c;
+  --color-glass-white: rgba(255, 255, 255, 0.05);
+  --color-glass-border: rgba(255, 255, 255, 0.1);
+  
+  --font-sans: var(--font-inter);
+  --font-mono: var(--font-jetbrains-mono);
+}
+
+@layer utilities {
+  .shimmer-text {
+    background: linear-gradient(110deg, #939393 45%, #eee 50%, #939393 55%);
+    background-size: 250% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+  }
+}
+
+@keyframes shine {
+  0% { background-position: 100% 0; }
+  100% { background-position: -100% 0; }
+}
 
 :root {
   --background: #0a0a0a;
   --foreground: #ededed;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
-
-html {
-  scroll-behavior: smooth;
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: 'Inter', system-ui, sans-serif;
+  font-family: var(--font-sans);
   overflow-x: hidden;
 }
 
-/* Custom scrollbar */
+/* Glassmorphism Utilities */
+.glass-panel {
+  background: var(--color-glass-white);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--color-glass-border);
+}
+
+.glass-card {
+  background: linear-gradient(145deg, rgba(255, 255, 255, 0.05) 0%, rgba(255, 255, 255, 0.02) 100%);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid var(--color-glass-border);
+  transition: all 0.3s ease;
+}
+
+.glass-card:hover {
+  border-color: var(--color-hacker-blue);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.2);
+  transform: translateY(-2px);
+}
+
+.neon-text {
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.neon-text-red {
+  text-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #1a1a1a;
+  background: #0a0a0a;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #4a4a4a;
+  background: #333;
   border-radius: 4px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #6a6a6a;
-}
-
-/* Background blur effect */
-.blur-bg {
-  position: relative;
-  overflow: hidden;
-}
-
-.blur-bg::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: 
-    radial-gradient(circle at 20% 80%, rgba(235, 31, 31, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 80% 20%, rgba(124, 15, 124, 0.15) 0%, transparent 50%),
-    radial-gradient(circle at 40% 40%, rgba(208, 20, 20, 0.1) 0%, transparent 50%);
-  filter: blur(120px);
-  z-index: -1;
-}
-
-/* Glowing text effect */
-.glow-text {
-  text-shadow: 0 0 20px currentColor, 0 0 40px currentColor, 0 0 60px currentColor;
-}
-
-/* Cyber grid background */
-.cyber-grid {
-  background-image: 
-    linear-gradient(rgba(239, 68, 68, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(147, 51, 234, 0.05) 1px, transparent 1px),
-    linear-gradient(rgba(249, 115, 22, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(249, 115, 22, 0.03) 1px, transparent 1px);
-  background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
-  background-position: 0 0, 0 0, 0 0, 0 0;
-}
-
-/* Animated gradient background */
-.animated-gradient {
-  background: linear-gradient(-45deg, #000000, #15083e, #a8c3c1, #043a19);
-  background-size: 400% 400%;
-  animation: gradientShift 15s ease infinite;
-}
-
-@keyframes gradientShift {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
-}
-
-/* Floating particles effect */
-.particles::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-image: 
-    radial-gradient(2px 2px at 20px 30px, rgba(239, 68, 68, 0.3), transparent),
-    radial-gradient(2px 2px at 40px 70px, rgba(147, 51, 234, 0.3), transparent),
-    radial-gradient(1px 1px at 90px 40px, rgba(249, 115, 22, 0.3), transparent),
-    radial-gradient(1px 1px at 130px 80px, rgba(34, 197, 94, 0.3), transparent),
-    radial-gradient(2px 2px at 160px 30px, rgba(59, 130, 246, 0.3), transparent);
-  background-repeat: repeat;
-  background-size: 200px 200px;
-  animation: float 20s linear infinite;
-  opacity: 0.6;
-}
-
-@keyframes float {
-  0% { transform: translateY(0px) rotate(0deg); }
-  100% { transform: translateY(-100px) rotate(360deg); }
-}
-
-/* Glass morphism effect */
-.glass {
-  background: rgba(255, 255, 255, 0.05);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-/* Neon glow effect */
-.neon-glow {
-  box-shadow: 
-    0 0 5px currentColor,
-    0 0 10px currentColor,
-    0 0 15px currentColor,
-    0 0 20px currentColor;
-}
-
-/* Text gradient animation */
-.gradient-text {
-  background: linear-gradient(-45deg, #ef4444, #8b5cf6, #f59e0b, #10b981);
-  background-size: 400% 400%;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-  animation: gradientShift 3s ease infinite;
-}
-
-/* Timeline styles */
-.timeline-item {
-  position: relative;
-  padding-left: 2rem;
-}
-
-.timeline-item::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(to bottom, #8b4513, #4b0082, #8b0000);
-}
-
-.timeline-item::after {
-  content: '';
-  position: absolute;
-  left: -6px;
-  top: 0.5rem;
-  width: 12px;
-  height: 12px;
-  border-radius: 50%;
-  background: #8b4513;
-  border: 2px solid #0a0a0a;
-}
-
-/* Radial gradient utility */
-.bg-gradient-radial {
-  background: radial-gradient(circle, var(--tw-gradient-stops));
+  background: var(--color-hacker-blue);
 }
