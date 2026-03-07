@@ -4,18 +4,50 @@ import { GlassCard } from "@/components/ui/GlassCard";
 import { Terminal, Cpu, Shield, Award, Briefcase } from "lucide-react";
 
 const skills = [
-    { category: "Exploit Development", items: ["Windows Internals", "Buffer Overflow", "Reverse Engineering", "C/C++", "Assembly"] },
+    { category: "Exploit Development", items: ["Windows Internals", "Buffer Overflow", "Reverse Engineering", "C/C++", "Assembly", "GDB"] },
+    { category: "Active Directory & Red Teaming", items: ["Kerberos", "LDAP", "Red Teaming", "PowerShell", "BloodHound", "Web Application Security", "Cyber Threat Intelligence"] },
     { category: "ICS/OT Security", items: ["SCADA", "PLC", "Modbus", "DNP3", "Industrial Networks"] },
-    { category: "Active Directory", items: ["Kerberos", "LDAP", "Red Teaming", "PowerShell", "BloodHound"] },
+    { category: "Cloud & DevSecOps", items: ["AWS", "GCP", "Microsoft Azure", "Kubernetes", "GitOps", "ArgoCD"] },
+    { category: "Software Development", items: ["Node.js", "React.js", "TypeScript", "Python", "SQL"] },
+    { category: "Data Science & MLOps", items: ["Machine Learning", "Scikit-Learn", "pandas", "MLflow"] },
     { category: "Certifications", items: ["AD-RTS", "CRTA", "COWA", "MCRTA", "Cisco CyberOps", "SOC L1/L2"] }
 ];
 
 const journey = [
-    { year: "2025", title: "Advanced Certifications", description: "Earned AD-RTS (Active Directory Red Team Specialist), CRTA (Certified Red Team Analyst), COWA (Certified Offensive Windows API Developer) and MCRTA (Multi Cloud Red Team Analyst) and Reached Pro Hacker Level in Hack The Box." },
+    { year: "2026 Feb", title: "AWS Cloud Club Captain at IIT", description: "Appointed as the AWS Cloud Club Captain at IIT for the term of 2026/27." },
+    { year: "2026 Feb", title: "First Event Hosted", description: "Hosted my first event, 'Cyber Handshake' for the WiCys Sri Lanka Chapter." },
+    { year: "2025", title: "First physical chess tournament", description: "Participated in the first physical chess tournament and won 4/5 games." },
+    { year: "2025", title: "Advanced Certifications", description: "Earned AD-RTS, CRTA, COWA, and MCRTA from CyberWarFare Labs. Reached Pro Hacker Level in Hack The Box." },
+    { year: "2024 - Present", title: "Technical Consultant & BSc CS", description: "Working as a Technical Consultant at Inivos and pursuing a BSc in Computer Science at the University of Westminster. AWS Cloud Club Captain at IIT." },
     { year: "2024", title: "HTB Prolabs & Certs", description: "Completed Dante and Full House Prolabs. Achieved Cisco CyberOps Associate and TryHackMe SOC certifications." },
+    { year: "2023 - 2024", title: "Customer Service & Internships", description: "Gained operational experience as a Customer Service Associate at Dialog Axiata PLC and as an Intern at Sampath Bank, optimizing branch operations and data analysis." },
     { year: "2023", title: "Exploit Development Focus", description: "Deep dive into reverse engineering, buffer overflows, and custom exploit development." },
-    { year: "2022", title: "TryHackMe Top 1%", description: "Reached top 1% globally and ranked 6th in Sri Lanka on TryHackMe." },
-    { year: "2020", title: "The Beginning", description: "Started formal education in cybersecurity, focusing on network security and ethical hacking." }
+    { year: "2022", title: "TryHackMe Top 1%", description: "Reached top 1% globally and ranked 6th in Sri Lanka on TryHackMe. Ranked 185th island-wide in the Technology Stream for the G.C.E. Advanced Level Examination." },
+    { year: "2020", title: "The Beginning", description: "Started formal education in cybersecurity, focusing on network security and ethical hacking. Achieved 9 A's in the G.C.E. Ordinary Level Examination." }
+];
+
+const achievements = [
+    {
+        title: "AWS Cloud Club Captain",
+        description: "IIT (Informatics Institute of Technology)",
+        icon: Award,
+        colorClass: "text-hacker-blue",
+        bgClass: "bg-hacker-blue/10"
+    },
+    {
+        title: "2nd Place - Ideathon",
+        description: "IIT CuttingEdge Exhibition",
+        icon: Award,
+        colorClass: "text-hacker-blue",
+        bgClass: "bg-hacker-blue/10"
+    },
+    {
+        title: "748th - Cyber Apocalypse CTF",
+        description: "Top 15% among 5694 teams",
+        icon: Briefcase,
+        colorClass: "text-hacker-red",
+        bgClass: "bg-hacker-red/10"
+    }
 ];
 
 export default function AboutPage() {
@@ -103,24 +135,20 @@ export default function AboutPage() {
                             <span className="text-hacker-blue">./</span> Achievements
                         </h2>
                         <div className="grid grid-cols-1 gap-4">
-                            <GlassCard className="p-4 flex gap-4 items-start">
-                                <div className="p-2 bg-hacker-blue/10 rounded-lg text-hacker-blue">
-                                    <Award size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-white">2nd Place - Ideathon</h4>
-                                    <p className="text-sm text-gray-400">IIT CuttingEdge Exhibition</p>
-                                </div>
-                            </GlassCard>
-                            <GlassCard className="p-4 flex gap-4 items-start">
-                                <div className="p-2 bg-hacker-red/10 rounded-lg text-hacker-red">
-                                    <Briefcase size={24} />
-                                </div>
-                                <div>
-                                    <h4 className="font-bold text-white">748th - Cyber Apocalypse CTF</h4>
-                                    <p className="text-sm text-gray-400">Top 15% among 5694 teams</p>
-                                </div>
-                            </GlassCard>
+                            {achievements.map((achievement, index) => {
+                                const Icon = achievement.icon;
+                                return (
+                                    <GlassCard key={index} className="p-4 flex gap-4 items-start">
+                                        <div className={`p-2 rounded-lg ${achievement.bgClass} ${achievement.colorClass}`}>
+                                            <Icon size={24} />
+                                        </div>
+                                        <div>
+                                            <h4 className="font-bold text-white">{achievement.title}</h4>
+                                            <p className="text-sm text-gray-400">{achievement.description}</p>
+                                        </div>
+                                    </GlassCard>
+                                );
+                            })}
                         </div>
                     </div>
                 </div>

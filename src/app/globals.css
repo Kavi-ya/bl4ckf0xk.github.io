@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@plugin "@tailwindcss/typography";
 
 @theme {
   --color-hacker-bg: #0a0a0a;
@@ -67,6 +68,15 @@ body {
 
 .neon-text-red {
   text-shadow: 0 0 10px rgba(255, 0, 60, 0.5);
+}
+
+/* Medium Image Styling */
+.graf-image {
+  max-width: 100%;
+  height: auto;
+  border-radius: 0.5rem;
+  margin: 2rem auto;
+  display: block;
 }
 
 /* Scrollbar */

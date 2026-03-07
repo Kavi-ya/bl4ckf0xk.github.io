@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 
 export default function ContactPage() {
     return (
-        <div className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+        <div className="min-h-[90vh] py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto flex flex-col justify-center">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div>
                     <motion.h1

@@ -1,84 +1,86 @@
 import { GlassCard } from "@/components/ui/GlassCard";
 import Link from "next/link";
 import { ArrowLeft, Calendar, Clock, Share2 } from "lucide-react";
+import { blogs } from "@/data/blogs";
+import fs from "fs";
+import path from "path";
 
 export async function generateStaticParams() {
-    return [
-        { slug: 'windows-exploit-dev-intro' },
-        { slug: 'ics-ot-security-basics' },
-        { slug: 'ad-red-teaming-101' },
-        { slug: 'reverse-engineering-ghidra' },
-    ];
+    return blogs.map((post) => ({
+        slug: post.slug,
+    }));
 }
 
 export default async function BlogPost({ params }: { params: Promise<{ slug: string }> }) {
     const { slug } = await params;
+    const post = blogs.find((p) => p.slug === slug);
 
-    // In a real app, fetch data based on slug
-    const post = {
-        title: slug.replace(/-/g, ' ').replace(/\b\w/g, l => l.toUpperCase()),
-        date: "Oct 12, 2023",
-        readTime: "5 min read",
-        content: `
-      <p>This is a placeholder for the blog post content. In a real application, this would be fetched from a CMS or markdown file.</p>
-      <br/>
-      <h3>Introduction</h3>
-      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-      <br/>
-      <h3>The Technical Details</h3>
-      <p>Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-      <br/>
-      <pre class="bg-black/50 p-4 rounded-lg border border-white/10 overflow-x-auto"><code>function hackThePlanet() {
-  console.log("Access Granted");
-  return true;
-}</code></pre>
-      <br/>
-      <h3>Conclusion</h3>
-      <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam.</p>
-    `,
-        tags: ["Tech", "Security"]
-    };
+    if (!post) {
+        return (
+            <div className="min-h-screen flex items-center justify-center text-white">
+                <div className="text-center">
+                    <h1 className="text-4xl font-bold mb-4">404</h1>
+                    <p>Post not found</p>
+                    <Link href="/blog" className="text-hacker-blue hover:underline mt-4 block">
+                        Return to blogs
+                    </Link>
+                </div>
+            </div>
+        );
+    }
+
+    // Read the HTML content
+    // Note: In Next.js with app router, process.cwd() is usually the project root
+    const contentPath = path.join(process.cwd(), "src/content/posts", `${post.slug}.html`);
+    let content = "";
+
+    try {
+        content = fs.readFileSync(contentPath, "utf-8");
+    } catch (error) {
+        console.error(`Error reading blog content for ${slug}:`, error);
+        content = "<p>Error loading content.</p>";
+    }
 
     return (
-        <article className="min-h-screen py-20 px-4 sm:px-6 lg:px-8 max-w-3xl mx-auto">
-            <Link href="/blog" className="inline-flex items-center gap-2 text-gray-400 hover:text-hacker-blue mb-8 transition-colors">
-                <ArrowLeft size={20} /> Back to Transmission Log
+        <article className="min-h-screen py-16 px-6 max-w-[1000px] mx-auto w-full">
+            <Link href="/blog" className="inline-flex items-center gap-2 text-hacker-blue hover:text-hacker-red mb-8 text-sm font-mono uppercase tracking-wider transition-colors">
+                <ArrowLeft size={16} /> Back to Transmission Log
             </Link>
 
-            <GlassCard className="p-8 md:p-12">
-                <div className="flex items-center gap-4 text-sm font-mono text-gray-500 mb-6">
-                    <span className="flex items-center gap-1">
-                        <Calendar size={14} /> {post.date}
-                    </span>
-                    <span className="flex items-center gap-1">
-                        <Clock size={14} /> {post.readTime}
-                    </span>
-                </div>
+            <GlassCard className="p-8 md:p-12 relative overflow-hidden rounded-2xl">
+                <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-hacker-blue to-transparent opacity-50"></div>
+                <header className="mb-12">
+                    <div className="flex flex-wrap items-center gap-4 mb-6">
+                        {post.tags.map((tag) => (
+                            <span key={tag} className="px-3 py-1 bg-hacker-blue/10 text-hacker-blue border border-hacker-blue/30 font-mono text-xs uppercase tracking-widest rounded">
+                                {tag}
+                            </span>
+                        ))}
+                    </div>
 
-                <h1 className="text-3xl md:text-5xl font-bold mb-8 leading-tight">
-                    {post.title}
-                </h1>
+                    <h1 className="text-4xl md:text-6xl font-black text-white leading-tight tracking-tight mb-6">
+                        {post.title}
+                    </h1>
 
-                <div className="flex flex-wrap gap-2 mb-10">
-                    {post.tags.map((tag) => (
-                        <span key={tag} className="px-3 py-1 rounded-full text-xs font-mono bg-hacker-blue/10 text-hacker-blue border border-hacker-blue/20">
-                            #{tag}
+                    <div className="flex items-center gap-6 text-sm font-mono text-gray-400">
+                        <span className="flex items-center gap-2">
+                            <Calendar className="text-hacker-blue" size={18} /> {post.date}
                         </span>
-                    ))}
-                </div>
+                        <span className="flex items-center gap-2">
+                            <Clock className="text-hacker-blue" size={18} /> {post.readTime}
+                        </span>
+                    </div>
+                </header>
 
                 <div
-                    className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-white prose-p:text-gray-300 prose-a:text-hacker-blue hover:prose-a:text-hacker-red prose-pre:bg-black/50 prose-pre:border prose-pre:border-white/10"
-                    dangerouslySetInnerHTML={{ __html: post.content }}
+                    className="prose prose-invert prose-lg max-w-none prose-headings:font-bold prose-headings:text-white prose-p:text-gray-300 prose-p:leading-relaxed prose-a:text-hacker-blue hover:prose-a:text-hacker-red prose-pre:bg-[#111] prose-pre:border prose-pre:border-white/10"
+                    dangerouslySetInnerHTML={{ __html: content }}
                 />
 
-                <div className="mt-12 pt-8 border-t border-white/10 flex justify-between items-center">
-                    <div className="text-gray-400 text-sm">
-                        Thanks for reading.
+                <div className="mt-16 pt-8 border-t border-white/10 flex justify-between items-center">
+                    <div className="text-gray-400 font-mono text-sm uppercase tracking-wider">
+                        Transmission Complete \\
                     </div>
-                    <button className="p-2 rounded-full hover:bg-white/10 text-gray-400 hover:text-white transition-colors">
-                        <Share2 size={20} />
-                    </button>
                 </div>
             </GlassCard>
         </article>

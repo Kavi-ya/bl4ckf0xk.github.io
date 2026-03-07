@@ -5,47 +5,26 @@ import { ExternalLink, Github } from "lucide-react";
 import Link from "next/link";
 
 const projects = [
-    // {
-    //     title: "Neural Network Visualizer",
-    //     description: "Interactive 3D visualization of neural network layers using Three.js and React.",
-    //     tags: ["React", "Three.js", "WebGL"],
-    //     link: "#",
-    //     github: "#"
-    // },
-    // {
-    //     title: "Crypto Algo Trader",
-    //     description: "Automated trading bot with backtesting engine and real-time market analysis.",
-    //     tags: ["Python", "FastAPI", "PostgreSQL"],
-    //     link: "#",
-    //     github: "#"
-    // },
-    // {
-    //     title: "Secure Chat Protocol",
-    //     description: "End-to-end encrypted messaging application with self-destructing messages.",
-    //     tags: ["Rust", "WebAssembly", "Socket.io"],
-    //     link: "#",
-    //     github: "#"
-    // }
+    {
+        title: "Fox.hen",
+        description: "A next-generation CTF platform where attackers are judged not by how fast they pop shells, but by how intelligently, quietly, and realistically they compromise adaptive systems.",
+        tags: ["TypeScript", "CTF Platform", "Red Teaming"],
+        link: "https://github.com/bl4ckf0xk/Fox.hen",
+        github: "https://github.com/bl4ckf0xk/Fox.hen"
+    },
+    {
+        title: "State-Aware-API-Fuzzer",
+        description: "An advanced, state-aware fuzzer designed specifically for testing complex API architectures and identifying hidden logic flaws.",
+        tags: ["Fuzzing", "API Security", "Vulnerability Research"],
+        link: "https://github.com/bl4ckf0xk/State-Aware-API-Fuzzer",
+        github: "https://github.com/bl4ckf0xk/State-Aware-API-Fuzzer"
+    },
     {
         title: "Assembly Programming Projects",
         description: "Made basic tools and utilities using Assembly Language.",
         tags: ["Assembly", "Windows", "Linux"],
         link: "#",
-        github: "#"
-    },
-    {
-        title: "Windows Exploit Development",
-        description: "Made basic tools and utilities using Assembly Language.",
-        tags: ["Assembly", "Windows", "Linux"],
-        link: "#",
-        github: "#"
-    },
-    {
-        title: "ICS/OT Security Research",
-        description: "Exploited SCADA systems and made tools to detect and prevent attacks.",
-        tags: ["Python", "FastAPI", "PostgreSQL"],
-        link: "#",
-        github: "#"
+        github: "https://github.com/bl4ckf0xk/Assembly-Projects"
     }
 ];
 

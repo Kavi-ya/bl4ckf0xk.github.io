@@ -6,7 +6,8 @@ import {
     FolderGit2,
     User,
     Mail,
-    BookOpen
+    BookOpen,
+    type LucideIcon
 } from "lucide-react";
 import Link from "next/link";
 
@@ -26,7 +27,7 @@ export function Dock() {
     );
 }
 
-function DockIcon({ name, path, icon: Icon }: { name: string, path: string, icon: any }) {
+function DockIcon({ name, path, icon: Icon }: { name: string, path: string, icon: LucideIcon }) {
     // let ref = useRef<HTMLDivElement>(null); // Removed
 
     // let distance = useTransform(mouseX, (val) => { // Removed

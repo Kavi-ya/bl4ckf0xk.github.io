@@ -14,6 +14,7 @@ const jetbrainsMono = JetBrains_Mono({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://bl4ckf0xk.github.io'),
+  referrer: 'no-referrer',
   title: {
     default: 'Kavindu Sahan | Exploit Developer & Security Specialist',
     template: '%s | Kavindu Sahan'
@@ -63,6 +64,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
+        suppressHydrationWarning
         className={`${inter.variable} ${jetbrainsMono.variable} antialiased bg-hacker-bg text-white selection:bg-hacker-blue selection:text-black min-h-screen flex flex-col`}
       >
         {/* <Navbar /> */}
