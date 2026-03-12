@@ -9,6 +9,18 @@ export interface BlogPost {
 
 export const blogs: BlogPost[] = [
     {
+        "title": "How to connect with an Ethernet/IP and CIP",
+        "slug": "how-to-connect-with-an-ethernetip-and-cip",
+        "date": "March 12, 2026",
+        "excerpt": "Ethernet/IP stands for Ethernet Industrial Protocol. Despite the name, the “IP” does not just mean Internet Protocol...",
+        "readTime": "2 min read",
+        "tags": [
+            "Tech",
+            "Security",
+            "ICS Security"
+        ]
+    },
+    {
         "title": "ICS Security Basics",
         "slug": "ics-security-basics",
         "date": "December 21, 2025",

@@ -1,0 +1,33 @@
+<section data-field="body" class="e-content">
+<section class="section section--body section--first">
+<div class="section-divider"><hr class="section-divider"></div>
+<div class="section-content"><div class="section-inner sectionLayout--insetColumn">
+
+<p class="graf graf--p">Ethernet/IP stands for Ethernet Industrial Protocol. Despite the name, the “IP” does not just mean Internet Protocol. Instead, it means that this protocol uses standard Ethernet hardware and TCP/IP routing. This protocol uses the standard Ethernet but communicate using the object oriented language called the Common Industrial Protocol (CIP).</p>
+<p class="graf graf--p">This CIP protocol responsible for controlling physical processes like read variables (tags), write values, start and stop machines and monitor sensors.</p>
+<p class="graf graf--p">To do the communication EtherNet/IP typically uses 44818 TCP or 2222 UDP as the standard ports but can be customized.</p>
+<ul class="postList">
+<li class="graf graf--li">TCP 44818: Explicit messaging. This is a client/server request-response model used for non-time-critical operations like tag reads/writes and configuration.</li>
+<li class="graf graf--li">UDP 2222: Implicit messaging. This is used for real-time I/O control where devices continuously blast data back and forth.</li>
+</ul>
+<p class="graf graf--p">PLCs stores variables as “tags”. In real factories tags have names like MotorSpeed, TankLevel or SafetyValveStatus. Because CIP is object-oriented, it maps these tags to specific Classes, Instances, and Attributes under the hood. When we query a PLC to read these tags, we execute a handshake.</p>
+
+<h3 class="graf graf--h3">Step 1: Register Session</h3>
+<p class="graf graf--p">Before sending any CIP commands, client must register an Ethernet/IP session.</p>
+
+<h3 class="graf graf--h3">Step 2: Send Unit Data</h3>
+<p class="graf graf--p">Client then wraps the CIP request inside an EhterNet/IP frame. In packet captures you can see this logged as an unconnected_send.service. This is standard CIP explicit Messaging.</p>
+
+<h3 class="graf graf--h3">Step 3: CIP Read Tag</h3>
+<p class="graf graf--p">The most critical part of the request is the service code. To read a tag, the client sends service: 76 (which is 0x4C in hex). This is the CIP service for Read Tag. You are explicitly asking the PLC: "Give me the value stored in this specific memory location."</p>
+
+<pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="text" class="graf graf--pre graf--preV2"><span class="pre--content">service: 76</span></pre>
+<pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="text" class="graf graf--pre graf--preV2"><span class="pre--content">0x4C</span></pre>
+
+<p class="graf graf--p">To automate this entire handshake and extract tags programmatically, security researchers and engineers often use specialized Python modules like cpppo or pycomm3 to handle the complex CIP routing and encapsulation.</p>
+
+<pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="text" class="graf graf--pre graf--preV2"><span class="pre--content">cpppo</span></pre>
+<pre data-code-block-mode="1" spellcheck="false" data-code-block-lang="text" class="graf graf--pre graf--preV2"><span class="pre--content">pycomm3</span></pre>
+
+</div></div></section>
+</section>
