@@ -145,6 +145,14 @@ export function DNA3D() {
                     <DnaHelix labelsRef={labelsRef} />
                 </Canvas>
             </div>
+            {/* CTF Part 2: Hidden in plain sight */}
+            <div 
+                style={{ display: 'none' }} 
+                data-ctf-part="2" 
+                aria-hidden="true"
+            >
+                v01c3_n0_
+            </div>
         </div>
     );
 }

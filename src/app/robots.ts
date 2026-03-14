@@ -7,7 +7,10 @@ export default function robots(): MetadataRoute.Robots {
         rules: {
             userAgent: '*',
             allow: '/',
-            disallow: '/private/',
+            disallow: [
+                '/private/',
+                '/bl4ckf0xk{v01d_' // CTF Part 1
+            ],
         },
         sitemap: 'https://bl4ckf0xk.github.io/sitemap.xml',
     };

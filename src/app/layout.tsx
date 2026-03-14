@@ -55,6 +55,7 @@ export const metadata: Metadata = {
 
 import { Dock } from "@/components/layout/Dock";
 import { Footer } from "@/components/layout/Footer";
+import { CTFConsole } from "@/components/CTFConsole";
 
 export default function RootLayout({
   children,
@@ -73,6 +74,7 @@ export default function RootLayout({
         </main>
         <Dock />
         <Footer />
+        <CTFConsole />
       </body>
     </html>
   );

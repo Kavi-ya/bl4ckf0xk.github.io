@@ -1,7 +1,9 @@
 "use client";
 
 import { GlassCard } from "@/components/ui/GlassCard";
-import { Terminal, Cpu, Shield, Award, Briefcase } from "lucide-react";
+import { Terminal, Cpu, Shield, Award, Briefcase, ExternalLink, FileText } from "lucide-react";
+import Script from "next/script";
+import { useRef, useEffect } from "react";
 
 const skills = [
     { category: "Exploit Development", items: ["Windows Internals", "Buffer Overflow", "Reverse Engineering", "C/C++", "Assembly", "GDB"] },
@@ -11,6 +13,66 @@ const skills = [
     { category: "Software Development", items: ["Node.js", "React.js", "TypeScript", "Python", "SQL"] },
     { category: "Data Science & MLOps", items: ["Machine Learning", "Scikit-Learn", "pandas", "MLflow"] },
     { category: "Certifications", items: ["AD-RTS", "CRTA", "COWA", "MCRTA", "Cisco CyberOps", "SOC L1/L2"] }
+];
+const certBadges = [
+    {
+        id: "aws-cloud-club-captain",
+        image: "/certs/aws-cloud-club-captain-2.png",
+        link: "https://www.credly.com/badges/041dabd6-b1d3-4dea-b627-f9bd9329eaf3/public_url"
+    },
+    {
+        id: "cyberops-associate",
+        image: "/certs/cyberops-associate.png",
+        link: "https://www.credly.com/badges/e9834ecc-64d4-4fb0-ba31-d37fa749c789/public_url" // Update with real link if different
+    },
+    {
+        id: "meta-frontend",
+        image: "/certs/meta-front-end-developer-certificate.png",
+        link: "https://www.credly.com/badges/4cf947d4-5300-4dc7-a59b-a3de7caabe92/public_url" // Update with real link if different
+    },
+    {
+        id: "ifs-ai-fundamentals",
+        image: "/certs/ifs-learning-achievement-ifs-ai-fundamentals-ifs-cl.png",
+        link: "https://www.credly.com/badges/9cdb2eb0-961c-4a90-82e4-cfcd78ba9e7f/public_url" // Update with real link if different
+    },
+    {
+        id: "ifs-ai-enabling",
+        image: "/certs/ifs-learning-achievement-enabling-ifs-ai-ifs-cloud.png",
+        link: "https://www.credly.com/badges/f2e40437-e1e0-44e5-b34e-b0806d41e016/public_url" // Update with real link if different
+    },
+    {
+        id: "ifs-web-dev",
+        image: "/certs/ifs-learning-achievement-advanced-web-development-c.png",
+        link: "https://www.credly.com/badges/7ee43386-4760-424d-9c59-297ebf232f7b/public_url" // Update with real link if different
+    }
+];
+
+const documentCerts = [
+    {
+        id: "thm-cert",
+        image: "/certificates/THM-LXNPIOPQCS.png",
+        link: "/certificates/THM-LXNPIOPQCS.pdf"
+    },
+    {
+        id: "htb-cert",
+        image: "/certificates/Certificate-bl4ckf0xk.png",
+        link: "/certificates/Certificate-bl4ckf0xk.pdf"
+    },
+    {
+        id: "training-cert",
+        image: "/certificates/Kavindu_Sahan.png",
+        link: "/certificates/Kavindu_Sahan.pdf"
+    },
+    {
+        id: "completion-cert",
+        image: "/certificates/certificate.png",
+        link: "/certificates/certificate.pdf"
+    },
+    {
+        id: "additional-cert",
+        image: "/certificates/image.webp",
+        link: "/certificates/image.webp"
+    }
 ];
 
 const journey = [
@@ -153,6 +215,122 @@ export default function AboutPage() {
                     </div>
                 </div>
             </div>
+
+            {/* Certifications & Badges Section */}
+            <div className="mt-20">
+                <h2 className="text-2xl font-bold mb-8 font-mono flex items-center gap-2">
+                    <span className="text-hacker-blue">./</span> Certifications & Badges
+                </h2>
+                
+                <div className="relative w-full overflow-hidden marquee-fade-edges py-12">
+                    {/* The animate-marquee class scrolls translateX from 0 to -50% */}
+                    <div className="flex w-max animate-marquee gap-12 hover:animation-paused items-center">
+                        {/* We duplicate the array to create the infinite scroll effect seamlessly */}
+                        {[...certBadges, ...certBadges, ...certBadges].map((badge, index) => {
+                            return (
+                                <BadgeItem key={`${badge.id}-${index}`} badge={badge} />
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {/* Document Certificates Section */}
+                <div className="mt-20">
+                    <h2 className="text-2xl font-bold mb-8 font-mono flex items-center gap-2">
+                        <span className="text-hacker-blue">./</span> Document Certificates
+                    </h2>
+                    
+                    <div className="relative w-full overflow-hidden marquee-fade-edges py-12">
+                        <div className="flex w-max animate-marquee gap-12 hover:animation-paused items-center">
+                            {[...documentCerts, ...documentCerts, ...documentCerts].map((cert, index) => {
+                                return (
+                                    <BadgeItem 
+                                        key={`doc-${cert.id}-${index}`} 
+                                        badge={cert} 
+                                        imgClass="w-48 h-64 md:w-[450px] md:h-[350px] object-contain pointer-events-none"
+                                    />
+                                );
+                            })}
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
+    );
+}
+
+// Separate component to handle the individual scroll animations
+function BadgeItem({ badge, imgClass }: { badge: typeof certBadges[0], imgClass?: string }) {
+    const ref = useRef<HTMLAnchorElement>(null);
+
+    useEffect(() => {
+        const updateStyle = () => {
+            if (!ref.current) return;
+            const rect = ref.current.getBoundingClientRect();
+            // Calculate center of the element
+            const elementCenter = rect.left + rect.width / 2;
+            // Calculate center of the viewport
+            const viewportCenter = window.innerWidth / 2;
+            
+            // Calculate how far the element is from the center (absolute distance)
+            const distance = Math.abs(viewportCenter - elementCenter);
+            
+            // Adjust zoom spread based on viewport width
+            const isMobile = window.innerWidth <= 768;
+            const isLarge = imgClass?.includes('md:w-[450px]'); 
+            
+            // Larger items need more spread to trigger the zoom correctly across their width
+            const baseDistance = isLarge ? 450 : 350;
+            const maxDistance = isMobile ? (isLarge ? 200 : 150) : baseDistance; 
+            
+            const maxScale = isMobile ? 1.05 : 1.18; 
+
+            
+            let scale = 1;
+            let glow = 0;
+
+            // Linear interpolation for zoom and glow intensity
+            if (distance < maxDistance) {
+                const progress = 1 - (distance / maxDistance);
+                // Ease the animation curve
+                const easedProgress = Math.pow(progress, 1.8);
+                
+                scale = 1 + (maxScale - 1) * easedProgress;
+                glow = easedProgress;
+            }
+
+            // Directly mutate DOM for 60fps performance without React re-renders (fixes the "buggy" feeling)
+            ref.current.style.transform = `scale(${scale})`;
+            ref.current.style.filter = `drop-shadow(0 0 ${glow * 25}px rgba(0,240,255,${glow * 0.7}))`;
+            ref.current.style.zIndex = glow > 0.5 ? "20" : "1";
+        };
+
+        let animationFrameId: number;
+        const animate = () => {
+            updateStyle();
+            animationFrameId = requestAnimationFrame(animate);
+        };
+        
+        animate();
+        
+        return () => {
+            cancelAnimationFrame(animationFrameId);
+        };
+    }, []);
+
+    return (
+        <a 
+            ref={ref}
+            href={badge.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex-shrink-0 inline-block will-change-transform"
+        >
+            <img
+                src={badge.image}
+                alt="Certification Badge"
+                className={imgClass || "w-32 h-32 md:w-[250px] md:h-[250px] object-contain pointer-events-none"}
+            />
+        </a>
     );
 }

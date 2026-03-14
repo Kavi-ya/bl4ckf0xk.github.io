@@ -7,6 +7,7 @@ import {
     User,
     Mail,
     BookOpen,
+    Lock,
     type LucideIcon
 } from "lucide-react";
 import Link from "next/link";
@@ -61,5 +62,6 @@ const dockItems = [
     { name: 'Blog', path: '/blog', icon: BookOpen },
     { name: 'Portfolio', path: '/portfolio', icon: FolderGit2 },
     { name: 'About', path: '/about', icon: User },
+    { name: 'Vault', path: '/gallery', icon: Lock },
     { name: 'Contact', path: '/contact', icon: Mail },
 ];
