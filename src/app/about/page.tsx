@@ -72,6 +72,16 @@ const documentCerts = [
         id: "additional-cert",
         image: "/certificates/image.webp",
         link: "/certificates/image.webp"
+    },
+    {
+        id: "cert-new-1",
+        image: "/certificates/1758375144857.jpeg",
+        link: "/certificates/1758375144857.jpeg"
+    },
+    {
+        id: "cert-new-2",
+        image: "/certificates/tincel_trace.png",
+        link: "/certificates/1766370970330.pdf"
     }
 ];
 
@@ -221,7 +231,7 @@ export default function AboutPage() {
                 <h2 className="text-2xl font-bold mb-8 font-mono flex items-center gap-2">
                     <span className="text-hacker-blue">./</span> Certifications & Badges
                 </h2>
-                
+
                 <div className="relative w-full overflow-hidden marquee-fade-edges py-12">
                     {/* The animate-marquee class scrolls translateX from 0 to -50% */}
                     <div className="flex w-max animate-marquee gap-12 hover:animation-paused items-center">
@@ -239,14 +249,14 @@ export default function AboutPage() {
                     <h2 className="text-2xl font-bold mb-8 font-mono flex items-center gap-2">
                         <span className="text-hacker-blue">./</span> Document Certificates
                     </h2>
-                    
+
                     <div className="relative w-full overflow-hidden marquee-fade-edges py-12">
                         <div className="flex w-max animate-marquee gap-12 hover:animation-paused items-center">
                             {[...documentCerts, ...documentCerts, ...documentCerts].map((cert, index) => {
                                 return (
-                                    <BadgeItem 
-                                        key={`doc-${cert.id}-${index}`} 
-                                        badge={cert} 
+                                    <BadgeItem
+                                        key={`doc-${cert.id}-${index}`}
+                                        badge={cert}
                                         imgClass="w-48 h-64 md:w-[450px] md:h-[350px] object-contain pointer-events-none"
                                     />
                                 );
@@ -271,21 +281,21 @@ function BadgeItem({ badge, imgClass }: { badge: typeof certBadges[0], imgClass?
             const elementCenter = rect.left + rect.width / 2;
             // Calculate center of the viewport
             const viewportCenter = window.innerWidth / 2;
-            
+
             // Calculate how far the element is from the center (absolute distance)
             const distance = Math.abs(viewportCenter - elementCenter);
-            
+
             // Adjust zoom spread based on viewport width
             const isMobile = window.innerWidth <= 768;
-            const isLarge = imgClass?.includes('md:w-[450px]'); 
-            
+            const isLarge = imgClass?.includes('md:w-[450px]');
+
             // Larger items need more spread to trigger the zoom correctly across their width
             const baseDistance = isLarge ? 450 : 350;
-            const maxDistance = isMobile ? (isLarge ? 200 : 150) : baseDistance; 
-            
-            const maxScale = isMobile ? 1.05 : 1.18; 
+            const maxDistance = isMobile ? (isLarge ? 200 : 150) : baseDistance;
 
-            
+            const maxScale = isMobile ? 1.05 : 1.18;
+
+
             let scale = 1;
             let glow = 0;
 
@@ -294,7 +304,7 @@ function BadgeItem({ badge, imgClass }: { badge: typeof certBadges[0], imgClass?
                 const progress = 1 - (distance / maxDistance);
                 // Ease the animation curve
                 const easedProgress = Math.pow(progress, 1.8);
-                
+
                 scale = 1 + (maxScale - 1) * easedProgress;
                 glow = easedProgress;
             }
@@ -310,16 +320,16 @@ function BadgeItem({ badge, imgClass }: { badge: typeof certBadges[0], imgClass?
             updateStyle();
             animationFrameId = requestAnimationFrame(animate);
         };
-        
+
         animate();
-        
+
         return () => {
             cancelAnimationFrame(animationFrameId);
         };
     }, []);
 
     return (
-        <a 
+        <a
             ref={ref}
             href={badge.link}
             target="_blank"
