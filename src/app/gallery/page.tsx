@@ -33,7 +33,7 @@ export default function GalleryPage() {
             setImages(parsedImages);
             setIsUnlocked(true);
         } catch (err) {
-            setError("ACCESS DENIED: INVAILD FLAG SIGNATURE");
+            setError("ACCESS DENIED: INVALID FLAG SIGNATURE");
             setFlagInput("");
         }
     };
